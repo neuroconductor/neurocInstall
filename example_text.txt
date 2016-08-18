@@ -1,2 +1,2 @@
-Package Name    version stable  development
-oro.nifti   0.5.5.2 0f9c5164b4df859923e4e5589c64b0a7527f5d23    5ebb176f75979aa82c9a62c97c41e4b57171f071
+Package Name	version	stable	development
+oro.nifti	0.5.5.2	0f9c5164b4df859923e4e5589c64b0a7527f5d23	5ebb176f75979aa82c9a62c97c41e4b57171f071

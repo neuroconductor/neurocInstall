@@ -19,7 +19,8 @@ neuro_install = function(pkg,
   #############################
   ## grab list of current neuroc packages
   #############################
-  table_url = "http://"
+  # table_url = "http://"
+  table_url = "https://raw.githubusercontent.com/muschellij2/neuroconductor/master/example_text.txt"
   tab = read.delim(file = table_url, stringsAsFactors = FALSE)
   colnames(tab) = c("pkg", "version", "stable", "development")
 
