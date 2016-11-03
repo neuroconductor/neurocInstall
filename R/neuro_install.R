@@ -1,42 +1,51 @@
 
 #' @title Neuroconductor Installer
-#'
-#' @param pkg Package name in neuroconductor
+#' @description Install function for neuroconductor packages
+#' @param repo Package name in neuroconductor
 #' @param release Stable or development version
-#' @return
+#' @param ... additional arguments passed to
+#' \code{\link[devtools]{install_github}}
+#' @return Result from \code{\link[devtools]{install_github}}
 #' @export
 #' @importFrom devtools install_github
-#' @examples
-neuro_install = function(pkg,
-                         release = c("stable", "development")){
+#' @importFrom utils read.csv
+neuro_install = function(repo,
+                         release = c("stable", "development"),
+                         ...){
 
   #############################
   # Create a data.frame for merging
   #############################
   release = match.arg(release)
-  df = data.frame(pkg = pkg, stringsAsFactors = FALSE)
+  df = data.frame(repo = repo, stringsAsFactors = FALSE)
 
-  #############################
-  ## grab list of current neuroc packages
-  #############################
-  # table_url = "http://"
-  table_url = "https://raw.githubusercontent.com/muschellij2/neuroconductor/master/example_text.txt"
-  tab = read.delim(file = table_url, stringsAsFactors = FALSE)
-  colnames(tab) = c("pkg", "version", "stable", "development")
-
+  tab = neuro_package_table()
   ## import list of packages
   # error if pkg not in list of packages
-  check_install = df$pkg %in% tab$pkg
+  check_install = df$repo %in% tab$repo
   if (!all(check_install)) {
-    bad_pkgs = df$"pkg"[check_install]
+    bad_pkgs = df$repo[!check_install]
     bad_pkgs = paste(bad_pkgs, collapse = ", ")
-    stop(paste0("Packages ", bad_pkgs,
+    message(paste0("Available Packages on neuroconductor are ",
+            paste(unique(tab$repo), collapse = ",")))
+    stop(paste0("Package(s) ", bad_pkgs,
                 " are not in neuroconductor"))
   }
-  tab = merge(df, tab, by = "pkg", all.x = TRUE)
+  tab = merge(df, tab, by = "repo", all.x = TRUE)
 
   # pkg = tab$pkg
-  # commit_id = tab[, release]
-  tab$pkg = paste0("neuroconductor/", tab$pkg, tab[, release])
-  devtools::install_github(tab$pkg)
+  tab$commit_id = tab[, release]
+  tab$repo = paste0("neuroconductor/", tab$repo, "@", tab$commit_id)
+  devtools::install_github(tab$repo, ...)
 }
+
+#' @rdname neuro_install
+neuroc_install = function(...) {
+  neuro_install(...)
+}
+
+#' @rdname neuro_install
+neurocLite = function(...) {
+  neuro_install(...)
+}
+

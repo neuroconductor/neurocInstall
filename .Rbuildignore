@@ -1,5 +1,5 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 
-example_text\.txt$
+example_text\.csv$
 README\.md
