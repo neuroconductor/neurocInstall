@@ -1,4 +1,3 @@
-
 #' @title Neuroconductor Installer
 #' @description Install function for neuroconductor packages
 #' @param repo Package name in neuroconductor
