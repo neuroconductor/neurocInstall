@@ -5,4 +5,5 @@ example_text\.csv$
 README\.md
 neuro_top.R
 neurocLite.R
+make_neurocLite\.R
 makefile

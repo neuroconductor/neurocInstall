@@ -1,3 +1,4 @@
+# neurocInstall package version: 0.2.0
 if (!require(devtools)) {
   install.packages("devtools")
 }
