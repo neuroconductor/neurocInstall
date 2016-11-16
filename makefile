@@ -1,4 +1,7 @@
-neurocLite.R: neuro_top.R R/neuro_install.R make_neurocLite.R
+neurocLite.R: neuro_top.R \
+	R/neuro_install.R \
+	R/neuro_package_table.R \
+	make_neurocLite.R 
 	Rscript -e "source('make_neurocLite.R')"
 
 clean: 
