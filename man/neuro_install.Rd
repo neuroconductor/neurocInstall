@@ -6,7 +6,8 @@
 \alias{neuroc_install}
 \title{Neuroconductor Installer}
 \usage{
-neuro_install(repo, release = c("stable", "development"), ...)
+neuro_install(repo, release = c("stable", "development"),
+  upgrade_dependencies = TRUE, ...)
 
 neuroc_install(...)
 
@@ -16,6 +17,9 @@ neurocLite(...)
 \item{repo}{Package name in neuroconductor}
 
 \item{release}{Stable or development version}
+
+\item{upgrade_dependencies}{Should dependencies be updated?
+passed to \code{\link[devtools]{install}}}
 
 \item{...}{additional arguments passed to
 \code{\link[devtools]{install_github}}}

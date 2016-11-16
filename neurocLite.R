@@ -1,3 +1,6 @@
+if (!require(devtools)) {
+  install.packages("devtools")
+}
 #' @title Neuroconductor Installer
 #' @description Install function for neuroconductor packages
 #' @param repo Package name in neuroconductor
