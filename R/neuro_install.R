@@ -29,7 +29,7 @@ neuro_install = function(repo,
     bad_pkgs = df$repo[!check_install]
     bad_pkgs = paste(bad_pkgs, collapse = ", ")
     message(paste0("Available Packages on neuroconductor are ",
-            paste(unique(tab$repo), collapse = ",")))
+            paste(unique(tab$repo), collapse = ", ")))
     stop(paste0("Package(s) ", bad_pkgs,
                 " are not in neuroconductor"))
   }
