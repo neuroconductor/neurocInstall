@@ -3,5 +3,7 @@
 export(neuro_install)
 export(neuro_package_table)
 export(neuro_packages)
+export(neurocLite)
+export(neuroc_install)
 importFrom(devtools,install_github)
 importFrom(utils,read.csv)

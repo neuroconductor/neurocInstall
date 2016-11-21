@@ -44,11 +44,16 @@ neuro_install = function(repo,
 }
 
 #' @rdname neuro_install
+#' @aliases neuroc_install
+#' @aliases neuro_install
+#' @export
 neuroc_install = function(...) {
   neuro_install(...)
 }
 
 #' @rdname neuro_install
+#' @aliases neurocLite
+#' @export
 neurocLite = function(...) {
   neuro_install(...)
 }
