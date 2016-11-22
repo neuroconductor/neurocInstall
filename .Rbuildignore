@@ -8,3 +8,4 @@ neuro_bottom.R
 neurocLite.R
 make_neurocLite\.R
 makefile
+^\.travis\.yml$
