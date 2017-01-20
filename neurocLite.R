@@ -1,5 +1,5 @@
-# neurocInstall package version: 0.2.2
-pkg_ver = '# neurocInstall package version: 0.2.2'
+# neurocInstall package version: 0.3.1
+pkg_ver = '# neurocInstall package version: 0.3.1'
 if (!require("neurocInstall")) {
   if (!require(devtools)) {
     install.packages("devtools")
@@ -36,7 +36,7 @@ if (!require("neurocInstall")) {
 	    bad_pkgs = df$repo[!check_install]
 	    bad_pkgs = paste(bad_pkgs, collapse = ", ")
 	    message(paste0("Available Packages on neuroconductor are ",
-	            paste(unique(tab$repo), collapse = ",")))
+	            paste(unique(tab$repo), collapse = ", ")))
 	    stop(paste0("Package(s) ", bad_pkgs,
 	                " are not in neuroconductor"))
 	  }
@@ -51,11 +51,16 @@ if (!require("neurocInstall")) {
 	}
 	
 	#' @rdname neuro_install
+	#' @aliases neuroc_install
+	#' @aliases neuro_install
+	#' @export
 	neuroc_install = function(...) {
 	  neuro_install(...)
 	}
 	
 	#' @rdname neuro_install
+	#' @aliases neurocLite
+	#' @export
 	neurocLite = function(...) {
 	  neuro_install(...)
 	}
@@ -67,7 +72,7 @@ if (!require("neurocInstall")) {
 	#' @export
 	#' 
 	#' @note Package information is obtained from 
-	#' \url{"http://neuroconductor.org/neurocPackages"}
+	#' \url{"https://neuroconductor.org/neurocPackages"}
 	#'
 	#' @examples
 	#' neuro_package_table()
@@ -80,7 +85,7 @@ if (!require("neurocInstall")) {
 	
 	  # table_url = paste0("http://neuroconductor.org/sites/default",
 	  #                    "/files/neuroc_packages.txt")
-	  table_url = "http://neuroconductor.org/neurocPackages"
+	  table_url = "https://neuroconductor.org/neurocPackages"
 	  tab = read.csv(file = table_url,
 	                 stringsAsFactors = FALSE, header = TRUE,
 	                 na.strings = "")

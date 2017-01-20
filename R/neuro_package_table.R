@@ -4,7 +4,7 @@
 #' @export
 #' 
 #' @note Package information is obtained from 
-#' \url{"http://neuroconductor.org/neurocPackages"}
+#' \url{"https://neuroconductor.org/neurocPackages"}
 #'
 #' @examples
 #' neuro_package_table()
@@ -17,7 +17,7 @@ neuro_package_table = function() {
 
   # table_url = paste0("http://neuroconductor.org/sites/default",
   #                    "/files/neuroc_packages.txt")
-  table_url = "http://neuroconductor.org/neurocPackages"
+  table_url = "https://neuroconductor.org/neurocPackages"
   tab = read.csv(file = table_url,
                  stringsAsFactors = FALSE, header = TRUE,
                  na.strings = "")
