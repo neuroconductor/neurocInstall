@@ -53,7 +53,7 @@ message(paste("Using neurocLite version:", pkg_ver))
 	#' @importFrom utils compareVersion install.packages installed.packages
 	neuro_install = function(repo,
 	                         release = c("stable", "development"),
-	                         upgrade_dependencies = TRUE,
+	                         upgrade_dependencies = FALSE,
 	                         ...){
 	
 	  #############################
