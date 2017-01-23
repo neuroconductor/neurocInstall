@@ -1,5 +1,5 @@
-# neurocInstall package version: 0.4.3
-pkg_ver = '# neurocInstall package version: 0.4.3'
+# neurocInstall package version: 0.4.4
+pkg_ver = '# neurocInstall package version: 0.4.4'
 # if (!require("neurocInstall")) {
 #########################################
 # Checking devtools version
@@ -75,10 +75,13 @@ message(paste("Using neurocLite version:", pkg_ver))
 	                " are not in neuroconductor"))
 	  }
 	  tab = merge(df, tab, by = "repo", all.x = TRUE)
+	  tab$version = numeric_version(tab$version)
 	
 	  # pkg = tab$pkg
 	  tab$commit_id = tab[, release]
 	  tab$repo = paste0("neuroconductor/", tab$repo, "@", tab$commit_id)
+	  max_version = max(tab$version)
+	  tab = tab[ tab$version %in% max_version,, drop = FALSE]
 	  devtools::install_github(tab$repo,
 	                           upgrade_dependencies = upgrade_dependencies,
 	                           ...)
