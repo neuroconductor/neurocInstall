@@ -1,12 +1,12 @@
 Package: neurocInstall
 Type: Package
 Title: Neuroconductor Installer
-Version: 0.3.2
+Version: 0.4
 Author: John Muschelli <muschellij2@gmail.com>
 Maintainer: John Muschelli <muschellij2@gmail.com>
 Description: Installs 'neuroconductor' packages from GitHub repository.
 Imports:
-    devtools,
+    devtools (>= 1.12.0.9000),
     utils 
 License: GPL-2
 Encoding: UTF-8

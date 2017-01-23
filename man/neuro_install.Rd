@@ -2,8 +2,8 @@
 % Please edit documentation in R/neuro_install.R
 \name{neuro_install}
 \alias{neuro_install}
-\alias{neurocLite}
 \alias{neuroc_install}
+\alias{neurocLite}
 \title{Neuroconductor Installer}
 \usage{
 neuro_install(repo, release = c("stable", "development"),
@@ -30,4 +30,3 @@ Result from \code{\link[devtools]{install_github}}
 \description{
 Install function for neuroconductor packages
 }
-

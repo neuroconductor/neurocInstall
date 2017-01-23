@@ -14,9 +14,8 @@ Returns the table of Neuroconductor packages
 }
 \note{
 Package information is obtained from 
-\url{"http://neuroconductor.org/neurocPackages"}
+\url{"https://neuroconductor.org/neurocPackages"}
 }
 \examples{
 neuro_package_table()
 }
-

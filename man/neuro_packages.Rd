@@ -15,4 +15,3 @@ Returns the vector of Neuroconductor packages
 \examples{
 neuro_packages()
 }
-
