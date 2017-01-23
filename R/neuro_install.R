@@ -42,9 +42,20 @@ neuro_install = function(repo,
   tab$repo = paste0("neuroconductor/", tab$repo, "@", tab$commit_id)
   max_version = max(tab$version)
   tab = tab[ tab$version %in% max_version,, drop = FALSE]
-  devtools::install_github(tab$repo,
-                           upgrade_dependencies = upgrade_dependencies,
-                           ...)
+  if (!upgrade_dependencies) {
+    res = try({
+      devtools::install_github(tab$repo,
+                               upgrade_dependencies = upgrade_dependencies,
+                               ...)
+    })
+    if (inherits(res, "try-error")) {
+      stop("Installation failed, please try with upgrade_dependencies = TRUE")
+    }
+  } else {
+    devtools::install_github(tab$repo,
+                             upgrade_dependencies = upgrade_dependencies,
+                             ...)
+  }
 }
 
 #' @rdname neuro_install
