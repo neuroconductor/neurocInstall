@@ -1,5 +1,5 @@
-# neurocInstall package version: 0.4
-pkg_ver = '# neurocInstall package version: 0.4'
+# neurocInstall package version: 0.4.1
+pkg_ver = '# neurocInstall package version: 0.4.1'
 if (!require("neurocInstall")) {
   if (!require(devtools)) {
     install.packages("devtools")
