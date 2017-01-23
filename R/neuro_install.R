@@ -10,6 +10,7 @@
 #' @export
 #' @importFrom devtools install_github
 #' @importFrom utils read.csv
+#' @importFrom utils compareVersion install.packages installed.packages
 neuro_install = function(repo,
                          release = c("stable", "development"),
                          upgrade_dependencies = TRUE,
