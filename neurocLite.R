@@ -1,5 +1,5 @@
-# neurocInstall package version: 0.4.2
-pkg_ver = '# neurocInstall package version: 0.4.2'
+# neurocInstall package version: 0.4.3
+pkg_ver = '# neurocInstall package version: 0.4.3'
 # if (!require("neurocInstall")) {
 #########################################
 # Checking devtools version
@@ -139,12 +139,12 @@ message(paste("Using neurocLite version:", pkg_ver))
 	  tab = tab$repo
 	  return(tab)
 	}
-} else {
-  require("neurocInstall")
-  pkgs = devtools::session_info()
-  pkgs = pkgs$packages
-  pkg_ver = pkgs$version[ pkgs$package %in% "neurocInstall"]
-  message(paste0("Using neurocInstall version: ", pkg_ver,
-          ", using neurocInstall::neurocLite for installation.")
-  )
-}
+# } else {
+#   require("neurocInstall")
+#   pkgs = devtools::session_info()
+#   pkgs = pkgs$packages
+#   pkg_ver = pkgs$version[ pkgs$package %in% "neurocInstall"]
+#   message(paste0("Using neurocInstall version: ", pkg_ver,
+#           ", using neurocInstall::neurocLite for installation.")
+#   )
+# }
