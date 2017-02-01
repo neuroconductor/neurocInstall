@@ -1,3 +1,7 @@
+source("https://bioconductor.org/biocLite.R")
+biocLite(suppressUpdates = TRUE,
+         suppressAutoUpdate = TRUE,
+         ask = FALSE)
 # if (!require("neurocInstall")) {
 #########################################
 # Checking devtools version
@@ -36,3 +40,4 @@ if (length(dtools) == 0 ) {
   }
 }
 message(paste("Using neurocLite version:", pkg_ver))
+

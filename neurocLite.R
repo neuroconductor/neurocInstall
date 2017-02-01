@@ -1,5 +1,9 @@
 # neurocInstall package version: 0.4.5
 pkg_ver = '# neurocInstall package version: 0.4.5'
+source("https://bioconductor.org/biocLite.R")
+biocLite(suppressUpdates = TRUE,
+         suppressAutoUpdate = TRUE,
+         ask = FALSE)
 # if (!require("neurocInstall")) {
 #########################################
 # Checking devtools version
@@ -38,6 +42,7 @@ if (length(dtools) == 0 ) {
   }
 }
 message(paste("Using neurocLite version:", pkg_ver))
+
 	#' @title Neuroconductor Installer
 	#' @description Install function for neuroconductor packages
 	#' @param repo Package name in neuroconductor
@@ -79,16 +84,23 @@ message(paste("Using neurocLite version:", pkg_ver))
 	
 	  # pkg = tab$pkg
 	  tab$commit_id = tab[, release]
+	  tab = split(tab, tab$repo)
+	  tab = lapply(tab, function(x) {
+	    max_version = max(x$version)
+	    x = x[ x$version %in% max_version,, drop = FALSE]
+	    return(x)
+	  })
+	  tab = do.call("rbind", tab)
 	  tab$repo = paste0("neuroconductor/", tab$repo, "@", tab$commit_id)
-	  max_version = max(tab$version)
-	  tab = tab[ tab$version %in% max_version,, drop = FALSE]
+	
 	  if (!upgrade_dependencies) {
 	    res = try({
-	      devtools::install_github(tab$repo,
-	                               upgrade_dependencies = upgrade_dependencies,
-	                               ...)
+	      results = devtools::install_github(
+	        tab$repo,
+	        upgrade_dependencies = upgrade_dependencies,
+	        ...)
 	    })
-	    if (inherits(res, "try-error")) {
+	    if (inherits(res, "try-error") || any(!results)) {
 	      stop("Installation failed, please try with upgrade_dependencies = TRUE")
 	    }
 	  } else {
