@@ -2,8 +2,8 @@
 #' @description Returns the table of Neuroconductor packages
 #' @return \code{data.frame} of packages with commit IDs
 #' @export
-#' 
-#' @note Package information is obtained from 
+#'
+#' @note Package information is obtained from
 #' \url{"https://neuroconductor.org/neurocPackages"}
 #'
 #' @examples
@@ -18,9 +18,19 @@ neuro_package_table = function() {
   # table_url = paste0("http://neuroconductor.org/sites/default",
   #                    "/files/neuroc_packages.txt")
   table_url = "https://neuroconductor.org/neurocPackages"
-  tab = read.csv(file = table_url,
-                 stringsAsFactors = FALSE, header = TRUE,
-                 na.strings = "")
+  args = list(file = table_url,
+             stringsAsFactors = FALSE, header = TRUE,
+             na.strings = "")
+  suppressWarnings({
+    tab = try( {
+      do.call("read.csv", args)
+    } , silent = TRUE)
+  })
+  if (inherits(tab, "try-error")) {
+    args$file = gsub("^https", "http", args$file)
+    tab = do.call("read.csv", args)
+  }
+
   colnames(tab) = c("repo", "version", "stable", "development")
   return(tab)
 }

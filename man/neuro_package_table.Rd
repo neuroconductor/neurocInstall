@@ -13,7 +13,7 @@ neuro_package_table()
 Returns the table of Neuroconductor packages
 }
 \note{
-Package information is obtained from 
+Package information is obtained from
 \url{"https://neuroconductor.org/neurocPackages"}
 }
 \examples{
