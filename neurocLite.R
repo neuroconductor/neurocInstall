@@ -1,5 +1,5 @@
-# neurocInstall package version: 0.4.5
-pkg_ver = '# neurocInstall package version: 0.4.5'
+# neurocInstall package version: 0.5
+pkg_ver = '# neurocInstall package version: 0.5'
 source("https://bioconductor.org/biocLite.R")
 biocLite(suppressUpdates = TRUE,
          suppressAutoUpdate = TRUE,
@@ -130,8 +130,8 @@ message(paste("Using neurocLite version:", pkg_ver))
 	#' @description Returns the table of Neuroconductor packages
 	#' @return \code{data.frame} of packages with commit IDs
 	#' @export
-	#' 
-	#' @note Package information is obtained from 
+	#'
+	#' @note Package information is obtained from
 	#' \url{"https://neuroconductor.org/neurocPackages"}
 	#'
 	#' @examples
@@ -146,9 +146,19 @@ message(paste("Using neurocLite version:", pkg_ver))
 	  # table_url = paste0("http://neuroconductor.org/sites/default",
 	  #                    "/files/neuroc_packages.txt")
 	  table_url = "https://neuroconductor.org/neurocPackages"
-	  tab = read.csv(file = table_url,
-	                 stringsAsFactors = FALSE, header = TRUE,
-	                 na.strings = "")
+	  args = list(file = table_url,
+	             stringsAsFactors = FALSE, header = TRUE,
+	             na.strings = "")
+	  suppressWarnings({
+	    tab = try( {
+	      do.call("read.csv", args)
+	    } , silent = TRUE)
+	  })
+	  if (inherits(tab, "try-error")) {
+	    args$file = gsub("^https", "http", args$file)
+	    tab = do.call("read.csv", args)
+	  }
+	
 	  colnames(tab) = c("repo", "version", "stable", "development")
 	  return(tab)
 	}
