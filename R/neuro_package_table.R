@@ -32,6 +32,15 @@ neuro_package_table = function() {
   }
 
   colnames(tab) = c("repo", "version", "stable", "development")
+  tab$v = package_version(tab$version)
+  ss = split(tab, tab$repo)
+  ss = lapply(ss, function(x) {
+    x = x[ order(x$v, decreasing = TRUE), ]
+    x = x[1,,drop = FALSE]
+    x$v = NULL
+    x
+  })
+  tab = do.call("rbind", ss)
   return(tab)
 }
 

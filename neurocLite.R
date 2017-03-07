@@ -1,5 +1,5 @@
-# neurocInstall package version: 0.5
-pkg_ver = '# neurocInstall package version: 0.5'
+# neurocInstall package version: 0.6
+pkg_ver = '# neurocInstall package version: 0.6'
 source("https://bioconductor.org/biocLite.R")
 biocLite(suppressUpdates = TRUE,
          suppressAutoUpdate = TRUE,
@@ -125,6 +125,31 @@ message(paste("Using neurocLite version:", pkg_ver))
 	  neuro_install(...)
 	}
 	
+	#' @title Make Full Package Version
+	#' @description Makes a package version to have all the same length.
+	#' This is helpful when using \code{\link{compareVersion}}.
+	#'
+	#' @param x Character vector of package versions
+	#'
+	#' @return Character vector of versions, each with the same length.
+	#' @export
+	#'
+	#' @examples
+	#' x = c("1.6", "1.6.0")
+	#' compareVersion(x[1], x[2])
+	#' x2 = make_full_version(x)
+	#' compareVersion(x2[1], x2[2])
+	make_full_version = function(x) {
+	  x = as.character(x)
+	  r <- lapply(strsplit(x, "[.-]"), as.integer)
+	  lx = sapply(r, length)
+	  mlx = max(lx)
+	  r <- lapply(r, function(ver) {
+	    c(ver, rep(0, length = mlx - length(ver)))
+	  })
+	  x = sapply(r, paste, collapse = ".")
+	  return(x)
+	}
 
 	#' @title Neuroconductor Package Table
 	#' @description Returns the table of Neuroconductor packages
@@ -160,6 +185,15 @@ message(paste("Using neurocLite version:", pkg_ver))
 	  }
 	
 	  colnames(tab) = c("repo", "version", "stable", "development")
+	  tab$v = package_version(tab$version)
+	  ss = split(tab, tab$repo)
+	  ss = lapply(ss, function(x) {
+	    x = x[ order(x$v, decreasing = TRUE), ]
+	    x = x[1,,drop = FALSE]
+	    x$v = NULL
+	    x
+	  })
+	  tab = do.call("rbind", ss)
 	  return(tab)
 	}
 	
