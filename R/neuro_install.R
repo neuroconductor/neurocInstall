@@ -12,7 +12,7 @@
 #' @importFrom utils read.csv
 #' @importFrom utils compareVersion install.packages installed.packages
 neuro_install = function(repo,
-                         release = c("stable", "development"),
+                         release = c("stable", "current"),
                          upgrade_dependencies = FALSE,
                          ...){
 
@@ -20,6 +20,7 @@ neuro_install = function(repo,
   # Create a data.frame for merging
   #############################
   release = match.arg(release)
+
   df = data.frame(repo = repo, stringsAsFactors = FALSE)
 
   tab = neuro_package_table()
@@ -35,17 +36,20 @@ neuro_install = function(repo,
                 " are not in neuroconductor"))
   }
   tab = merge(df, tab, by = "repo", all.x = TRUE)
-  tab$version = numeric_version(tab$version)
+  tab$stable.version = numeric_version(tab$stable.version)
+  tab$current.version = numeric_version(tab$current.version)
 
   # pkg = tab$pkg
   tab$commit_id = tab[, release]
   tab = split(tab, tab$repo)
   tab = lapply(tab, function(x) {
+    x$version = x[, paste0(release, ".version")]
     max_version = max(x$version)
     x = x[ x$version %in% max_version,, drop = FALSE]
     return(x)
   })
   tab = do.call("rbind", tab)
+  tab = data.frame(tab, stringsAsFactors = FALSE)
   tab$repo = paste0("neuroconductor/", tab$repo, "@", tab$commit_id)
 
   if (!upgrade_dependencies) {

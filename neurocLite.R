@@ -1,5 +1,5 @@
-# neurocInstall package version: 0.6
-pkg_ver = '# neurocInstall package version: 0.6'
+# neurocInstall package version: 0.6.2
+pkg_ver = '# neurocInstall package version: 0.6.2'
 source("https://bioconductor.org/biocLite.R")
 biocLite(suppressUpdates = TRUE,
          suppressAutoUpdate = TRUE,
@@ -57,7 +57,7 @@ message(paste("Using neurocLite version:", pkg_ver))
 	#' @importFrom utils read.csv
 	#' @importFrom utils compareVersion install.packages installed.packages
 	neuro_install = function(repo,
-	                         release = c("stable", "development"),
+	                         release = c("stable", "current"),
 	                         upgrade_dependencies = FALSE,
 	                         ...){
 	
@@ -65,6 +65,7 @@ message(paste("Using neurocLite version:", pkg_ver))
 	  # Create a data.frame for merging
 	  #############################
 	  release = match.arg(release)
+	
 	  df = data.frame(repo = repo, stringsAsFactors = FALSE)
 	
 	  tab = neuro_package_table()
@@ -80,17 +81,20 @@ message(paste("Using neurocLite version:", pkg_ver))
 	                " are not in neuroconductor"))
 	  }
 	  tab = merge(df, tab, by = "repo", all.x = TRUE)
-	  tab$version = numeric_version(tab$version)
+	  tab$stable.version = numeric_version(tab$stable.version)
+	  tab$current.version = numeric_version(tab$current.version)
 	
 	  # pkg = tab$pkg
 	  tab$commit_id = tab[, release]
 	  tab = split(tab, tab$repo)
 	  tab = lapply(tab, function(x) {
+	    x$version = x[, paste0(release, ".version")]
 	    max_version = max(x$version)
 	    x = x[ x$version %in% max_version,, drop = FALSE]
 	    return(x)
 	  })
 	  tab = do.call("rbind", tab)
+	  tab = data.frame(tab, stringsAsFactors = FALSE)
 	  tab$repo = paste0("neuroconductor/", tab$repo, "@", tab$commit_id)
 	
 	  if (!upgrade_dependencies) {
@@ -139,7 +143,10 @@ message(paste("Using neurocLite version:", pkg_ver))
 	#' compareVersion(x[1], x[2])
 	#' x2 = make_full_version(x)
 	#' compareVersion(x2[1], x2[2])
+	#' x = c("1.6", "1.6.0")
+	#' compareVersion(x2[1], x2[2])
 	make_full_version = function(x) {
+	  nx = names(x)
 	  x = as.character(x)
 	  r <- lapply(strsplit(x, "[.-]"), as.integer)
 	  lx = sapply(r, length)
@@ -148,8 +155,12 @@ message(paste("Using neurocLite version:", pkg_ver))
 	    c(ver, rep(0, length = mlx - length(ver)))
 	  })
 	  x = sapply(r, paste, collapse = ".")
+	  names(x) = nx
 	  return(x)
 	}
+	
+	
+	
 
 	#' @title Neuroconductor Package Table
 	#' @description Returns the table of Neuroconductor packages
@@ -184,8 +195,15 @@ message(paste("Using neurocLite version:", pkg_ver))
 	    tab = do.call("read.csv", args)
 	  }
 	
-	  colnames(tab) = c("repo", "version", "stable", "development")
-	  tab$v = package_version(tab$version)
+	  colnames(tab) = c("repo",
+	                    "stable.version",
+	                    "neuroc.stable.version",
+	                    "stable",
+	                    "current.version",
+	                    "neuroc.current.version",
+	                    "current")
+	
+	  tab$v = package_version(tab$stable.version)
 	  ss = split(tab, tab$repo)
 	  ss = lapply(ss, function(x) {
 	    x = x[ order(x$v, decreasing = TRUE), ]
@@ -194,6 +212,7 @@ message(paste("Using neurocLite version:", pkg_ver))
 	    x
 	  })
 	  tab = do.call("rbind", ss)
+	  tab = as.data.frame(tab, stringsAsFactors = FALSE)
 	  return(tab)
 	}
 	

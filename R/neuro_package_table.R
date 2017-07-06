@@ -31,8 +31,15 @@ neuro_package_table = function() {
     tab = do.call("read.csv", args)
   }
 
-  colnames(tab) = c("repo", "version", "stable", "development")
-  tab$v = package_version(tab$version)
+  colnames(tab) = c("repo",
+                    "stable.version",
+                    "neuroc.stable.version",
+                    "stable",
+                    "current.version",
+                    "neuroc.current.version",
+                    "current")
+
+  tab$v = package_version(tab$stable.version)
   ss = split(tab, tab$repo)
   ss = lapply(ss, function(x) {
     x = x[ order(x$v, decreasing = TRUE), ]
@@ -41,6 +48,7 @@ neuro_package_table = function() {
     x
   })
   tab = do.call("rbind", ss)
+  tab = as.data.frame(tab, stringsAsFactors = FALSE)
   return(tab)
 }
 

@@ -6,7 +6,7 @@
 \alias{neurocLite}
 \title{Neuroconductor Installer}
 \usage{
-neuro_install(repo, release = c("stable", "development"),
+neuro_install(repo, release = c("stable", "current"),
   upgrade_dependencies = FALSE, ...)
 
 neuroc_install(...)
