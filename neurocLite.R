@@ -1,5 +1,5 @@
-# neurocInstall package version: 0.6.2
-pkg_ver = '# neurocInstall package version: 0.6.2'
+# neurocInstall package version: 0.7
+pkg_ver = '# neurocInstall package version: 0.7'
 source("https://bioconductor.org/biocLite.R")
 biocLite(suppressUpdates = TRUE,
          suppressAutoUpdate = TRUE,
@@ -68,7 +68,7 @@ message(paste("Using neurocLite version:", pkg_ver))
 	
 	  df = data.frame(repo = repo, stringsAsFactors = FALSE)
 	
-	  tab = neuro_package_table()
+	  tab = neuro_package_table(long = TRUE)
 	  ## import list of packages
 	  # error if pkg not in list of packages
 	  check_install = df$repo %in% tab$repo
@@ -81,14 +81,13 @@ message(paste("Using neurocLite version:", pkg_ver))
 	                " are not in neuroconductor"))
 	  }
 	  tab = merge(df, tab, by = "repo", all.x = TRUE)
-	  tab$stable.version = numeric_version(tab$stable.version)
-	  tab$current.version = numeric_version(tab$current.version)
+	  tab$version = numeric_version(tab$version)
 	
 	  # pkg = tab$pkg
-	  tab$commit_id = tab[, release]
+	  # tab$commit_id = tab[, "commit_id"]
 	  tab = split(tab, tab$repo)
 	  tab = lapply(tab, function(x) {
-	    x$version = x[, paste0(release, ".version")]
+	    x$version = x[, "version"]
 	    max_version = max(x$version)
 	    x = x[ x$version %in% max_version,, drop = FALSE]
 	    return(x)
@@ -165,14 +164,20 @@ message(paste("Using neurocLite version:", pkg_ver))
 	#' @title Neuroconductor Package Table
 	#' @description Returns the table of Neuroconductor packages
 	#' @return \code{data.frame} of packages with commit IDs
+	#' @param path Path to the table of package
+	#' @param long Should the data be "long" (with respect to stable/current)
 	#' @export
 	#'
 	#' @note Package information is obtained from
 	#' \url{"https://neuroconductor.org/neurocPackages"}
 	#'
+	#' @importFrom stats reshape
 	#' @examples
 	#' neuro_package_table()
-	neuro_package_table = function() {
+	neuro_package_table = function(
+	  path = "https://neuroconductor.org/neurocPackages",
+	  long = FALSE
+	) {
 	  #############################
 	  ## grab list of current neuroc packages
 	  #############################
@@ -181,8 +186,7 @@ message(paste("Using neurocLite version:", pkg_ver))
 	
 	  # table_url = paste0("http://neuroconductor.org/sites/default",
 	  #                    "/files/neuroc_packages.txt")
-	  table_url = "https://neuroconductor.org/neurocPackages"
-	  args = list(file = table_url,
+	  args = list(file = path,
 	             stringsAsFactors = FALSE, header = TRUE,
 	             na.strings = "")
 	  suppressWarnings({
@@ -196,14 +200,14 @@ message(paste("Using neurocLite version:", pkg_ver))
 	  }
 	
 	  colnames(tab) = c("repo",
-	                    "stable.version",
-	                    "neuroc.stable.version",
-	                    "stable",
-	                    "current.version",
-	                    "neuroc.current.version",
-	                    "current")
+	                    "version.stable",
+	                    "neuroc_version.stable",
+	                    "commit_id.stable",
+	                    "version.current",
+	                    "neuroc_version.current",
+	                    "commit_id.current")
 	
-	  tab$v = package_version(tab$stable.version)
+	  tab$v = package_version(tab$version.stable)
 	  ss = split(tab, tab$repo)
 	  ss = lapply(ss, function(x) {
 	    x = x[ order(x$v, decreasing = TRUE), ]
@@ -213,19 +217,33 @@ message(paste("Using neurocLite version:", pkg_ver))
 	  })
 	  tab = do.call("rbind", ss)
 	  tab = as.data.frame(tab, stringsAsFactors = FALSE)
+	
+	  rownames(tab) = NULL
+	  if (long) {
+	    cn = colnames(tab)
+	    varying = cn[ cn != "repo"]
+	    tab = reshape(data = tab, direction = "long", idvar = "repo", varying = varying,
+	            times = c("current", "stable"), timevar = "release")
+	    rownames(tab) = NULL
+	  }
 	  return(tab)
 	}
+	
+	
 	
 	#' @title Neuroconductor Packages
 	#' @description Returns the vector of Neuroconductor packages
 	#' @return \code{vector} of packages available on Neuroconductor
+	#' @param ... Arguments passed to \code{\link{neuro_package_table}}
+	#'
 	#' @export
 	#'
 	#' @examples
 	#' neuro_packages()
-	neuro_packages = function() {
-	  tab = neuro_package_table()
+	neuro_packages = function(...) {
+	  tab = neuro_package_table(...)
 	  tab = tab$repo
+	  tab = unique(tab)
 	  return(tab)
 	}
 # } else {

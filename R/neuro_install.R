@@ -23,7 +23,7 @@ neuro_install = function(repo,
 
   df = data.frame(repo = repo, stringsAsFactors = FALSE)
 
-  tab = neuro_package_table()
+  tab = neuro_package_table(long = TRUE)
   ## import list of packages
   # error if pkg not in list of packages
   check_install = df$repo %in% tab$repo
@@ -36,14 +36,13 @@ neuro_install = function(repo,
                 " are not in neuroconductor"))
   }
   tab = merge(df, tab, by = "repo", all.x = TRUE)
-  tab$stable.version = numeric_version(tab$stable.version)
-  tab$current.version = numeric_version(tab$current.version)
+  tab$version = numeric_version(tab$version)
 
   # pkg = tab$pkg
-  tab$commit_id = tab[, release]
+  # tab$commit_id = tab[, "commit_id"]
   tab = split(tab, tab$repo)
   tab = lapply(tab, function(x) {
-    x$version = x[, paste0(release, ".version")]
+    x$version = x[, "version"]
     max_version = max(x$version)
     x = x[ x$version %in% max_version,, drop = FALSE]
     return(x)

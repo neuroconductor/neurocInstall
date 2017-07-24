@@ -4,7 +4,13 @@
 \alias{neuro_package_table}
 \title{Neuroconductor Package Table}
 \usage{
-neuro_package_table()
+neuro_package_table(path = "https://neuroconductor.org/neurocPackages",
+  long = FALSE)
+}
+\arguments{
+\item{path}{Path to the table of package}
+
+\item{long}{Should the data be "long" (with respect to stable/current)}
 }
 \value{
 \code{data.frame} of packages with commit IDs

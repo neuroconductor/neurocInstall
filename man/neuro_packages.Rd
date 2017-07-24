@@ -4,7 +4,10 @@
 \alias{neuro_packages}
 \title{Neuroconductor Packages}
 \usage{
-neuro_packages()
+neuro_packages(...)
+}
+\arguments{
+\item{...}{Arguments passed to \code{\link{neuro_package_table}}}
 }
 \value{
 \code{vector} of packages available on Neuroconductor
