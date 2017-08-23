@@ -1,5 +1,5 @@
-# neurocInstall package version: 0.7
-pkg_ver = '# neurocInstall package version: 0.7'
+# neurocInstall package version: 0.7.1
+pkg_ver = '# neurocInstall package version: 0.7.1'
 source("https://bioconductor.org/biocLite.R")
 biocLite(suppressUpdates = TRUE,
          suppressAutoUpdate = TRUE,
@@ -181,14 +181,9 @@ message(paste("Using neurocLite version:", pkg_ver))
 	  #############################
 	  ## grab list of current neuroc packages
 	  #############################
-	  # table_url = paste0("http://162.129.222.10/sites/default",
-	  # "/files/neuroc_packages.txt"
-	
-	  # table_url = paste0("http://neuroconductor.org/sites/default",
-	  #                    "/files/neuroc_packages.txt")
 	  args = list(file = path,
-	             stringsAsFactors = FALSE, header = TRUE,
-	             na.strings = "")
+	              stringsAsFactors = FALSE, header = TRUE,
+	              na.strings = "")
 	  suppressWarnings({
 	    tab = try( {
 	      do.call("read.csv", args)
@@ -199,15 +194,18 @@ message(paste("Using neurocLite version:", pkg_ver))
 	    tab = do.call("read.csv", args)
 	  }
 	
-	  colnames(tab) = c("repo",
-	                    "version.stable",
-	                    "neuroc_version.stable",
-	                    "commit_id.stable",
-	                    "version.current",
-	                    "neuroc_version.current",
-	                    "commit_id.current")
+	  xcn = colnames(tab) = c("repo",
+	                          "version.stable",
+	                          "neuroc_version.stable",
+	                          "commit_id.stable",
+	                          "version.current",
+	                          "neuroc_version.current",
+	                          "commit_id.current")
 	
 	  tab$v = package_version(tab$version.stable)
+	  if (nrow(tab) == 0 & !long) {
+	    return(tab)
+	  }
 	  ss = split(tab, tab$repo)
 	  ss = lapply(ss, function(x) {
 	    x = x[ order(x$v, decreasing = TRUE), ]
@@ -222,8 +220,18 @@ message(paste("Using neurocLite version:", pkg_ver))
 	  if (long) {
 	    cn = colnames(tab)
 	    varying = cn[ cn != "repo"]
-	    tab = reshape(data = tab, direction = "long", idvar = "repo", varying = varying,
-	            times = c("current", "stable"), timevar = "release")
+	    if (nrow(tab) == 0) {
+	      cn = sapply(strsplit(xcn, "[.]"), function(x) x[1])
+	      cn = unique(cn)
+	      tab = matrix(NA, nrow = 0, ncol = length(cn))
+	      tab = data.frame(tab)
+	      colnames(tab) = cn
+	    } else {
+	      tab = reshape(
+	        data = tab, direction = "long",
+	        idvar = "repo", varying = varying,
+	        times = c("current", "stable"), timevar = "release")
+	    }
 	    rownames(tab) = NULL
 	  }
 	  return(tab)
