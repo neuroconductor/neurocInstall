@@ -24,6 +24,8 @@ neuro_install = function(repo,
   df = data.frame(repo = repo, stringsAsFactors = FALSE)
 
   tab = neuro_package_table(long = TRUE)
+  tab = tab[ tab$release %in% release, ]
+
   ## import list of packages
   # error if pkg not in list of packages
   check_install = df$repo %in% tab$repo
