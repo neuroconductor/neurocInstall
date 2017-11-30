@@ -74,6 +74,13 @@ message(paste("Using neurocLite version:", pkg_ver))
 	
 	  if (release == "release") {
 	    x = install.packages(pkgs = repo, repos = release_repo, ...)
+	    not_installed = repo[!repo %in% installed.packages()]
+	    if (length(not_installed) > 0) {
+	      msg = paste0("Package(s): ", paste(not_installed, sep = ", "),
+	                   " released binaries were not installed,",
+	                   " please try to install with release = \"stable\"")
+	      warning(msg)
+	    }
 	    return(invisible(x))
 	  }
 	
