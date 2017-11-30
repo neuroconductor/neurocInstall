@@ -1,25 +1,36 @@
 #' @title Neuroconductor Installer
 #' @description Install function for neuroconductor packages
 #' @param repo Package name in neuroconductor
-#' @param release Stable or development version
+#' @param release Release, stable or development version
+#' @param release_repo Repo for release repository, passed to
+#' \code{\link{install.packages}}
+#'
 #' @param upgrade_dependencies Should dependencies be updated?
 #' passed to \code{\link[devtools]{install}}
 #' @param ... additional arguments passed to
-#' \code{\link[devtools]{install_github}}
+#' \code{\link[devtools]{install_github}} or
+#' \code{\link{install.packages}} (for release)
 #' @return Result from \code{\link[devtools]{install_github}}
 #' @export
 #' @importFrom devtools install_github
 #' @importFrom utils read.csv
 #' @importFrom utils compareVersion install.packages installed.packages
-neuro_install = function(repo,
-                         release = c("stable", "current"),
-                         upgrade_dependencies = FALSE,
-                         ...){
+neuro_install = function(
+  repo,
+  release = c("release", "stable", "current"),
+  release_repo = current_neuroc_release(),
+  upgrade_dependencies = FALSE,
+  ...){
 
   #############################
   # Create a data.frame for merging
   #############################
   release = match.arg(release)
+
+  if (release == "release") {
+    x = install.packages(pkgs = repo, repos = release_repo, ...)
+    return(invisible(x))
+  }
 
   df = data.frame(repo = repo, stringsAsFactors = FALSE)
 
@@ -33,7 +44,7 @@ neuro_install = function(repo,
     bad_pkgs = df$repo[!check_install]
     bad_pkgs = paste(bad_pkgs, collapse = ", ")
     message(paste0("Available Packages on neuroconductor are ",
-            paste(unique(tab$repo), collapse = ", ")))
+                   paste(unique(tab$repo), collapse = ", ")))
     stop(paste0("Package(s) ", bad_pkgs,
                 " are not in neuroconductor"))
   }
