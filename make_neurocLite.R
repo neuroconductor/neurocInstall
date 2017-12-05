@@ -13,6 +13,11 @@ vc = readLines("R/make_full_version.R")
 vc = paste0("\t", vc)
 content = c(content, vc)
 
+
+vc = readLines("R/current_neuroc_release.R")
+vc = paste0("\t", vc)
+content = c(content, vc)
+
 # adding version to the head and the printout
 version = paste0("# neurocInstall package version: ", version)
 version = c(version, paste0("pkg_ver = '", version, "'"))
