@@ -1,5 +1,5 @@
-# neurocInstall package version: 0.9.0
-pkg_ver = '# neurocInstall package version: 0.9.0'
+# neurocInstall package version: 0.9.1
+pkg_ver = '# neurocInstall package version: 0.9.1'
 source("https://bioconductor.org/biocLite.R")
 biocLite(suppressUpdates = TRUE,
          suppressAutoUpdate = TRUE,
@@ -46,7 +46,7 @@ message(paste("Using neurocLite version:", pkg_ver))
 	#' @title Neuroconductor Installer
 	#' @description Install function for neuroconductor packages
 	#' @param repo Package name in neuroconductor
-	#' @param release Release, stable or development version
+	#' @param release Stable, development, or release version
 	#' @param release_repo Repo for release repository, passed to
 	#' \code{\link{install.packages}}
 	#'
@@ -62,7 +62,7 @@ message(paste("Using neurocLite version:", pkg_ver))
 	#' @importFrom utils compareVersion install.packages installed.packages
 	neuro_install = function(
 	  repo,
-	  release = c("release", "stable", "current"),
+	  release = c("stable", "current", "release"),
 	  release_repo = current_neuroc_release(),
 	  upgrade_dependencies = FALSE,
 	  ...){

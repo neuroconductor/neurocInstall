@@ -6,7 +6,7 @@
 \alias{neurocLite}
 \title{Neuroconductor Installer}
 \usage{
-neuro_install(repo, release = c("release", "stable", "current"),
+neuro_install(repo, release = c("stable", "current", "release"),
   release_repo = current_neuroc_release(), upgrade_dependencies = FALSE,
   ...)
 
@@ -17,7 +17,7 @@ neurocLite(...)
 \arguments{
 \item{repo}{Package name in neuroconductor}
 
-\item{release}{Release, stable or development version}
+\item{release}{Stable, development, or release version}
 
 \item{release_repo}{Repo for release repository, passed to
 \code{\link{install.packages}}}
