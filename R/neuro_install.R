@@ -23,7 +23,10 @@
 #' @importFrom utils compareVersion install.packages installed.packages
 #'
 #' @examples \dontrun{
-#'    neuro_install("cifti", lib = tempfile())
+#'    tlib = tempfile()
+#'    dir.create(tlib, showWarnings = FALSE)
+#'    neuro_install("cifti", lib = tlib)
+#'    neuro_install("cifti", type = "source")
 #' }
 #'
 neuro_install = function(

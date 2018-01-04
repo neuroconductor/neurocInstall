@@ -41,7 +41,10 @@ Install function for neuroconductor packages
 }
 \examples{
 \dontrun{
-   neuro_install("cifti", lib = tempfile())
+   tlib = tempfile()
+   dir.create(tlib, showWarnings = FALSE)
+   neuro_install("cifti", lib = tlib)
+   neuro_install("cifti", type = "source")
 }
 
 }
