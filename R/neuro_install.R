@@ -22,12 +22,11 @@
 #' @importFrom utils read.csv
 #' @importFrom utils compareVersion install.packages installed.packages
 #'
-#' @examples \dontrun{
+#' @examples
 #'    tlib = tempfile()
 #'    dir.create(tlib, showWarnings = FALSE)
 #'    neuro_install("cifti", lib = tlib)
 #'    neuro_install("cifti", type = "source")
-#' }
 #'
 neuro_install = function(
   repo,
