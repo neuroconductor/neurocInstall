@@ -6,9 +6,8 @@
 \alias{neurocLite}
 \title{Neuroconductor Installer}
 \usage{
-neuro_install(repo, release = c("stable", "current", "release"),
-  release_repo = current_neuroc_release(), upgrade_dependencies = FALSE,
-  ...)
+neuro_install(repo, release = c("stable", "current"),
+  release_repo = latest_neuroc_release(), upgrade_dependencies = FALSE, ...)
 
 neuroc_install(...)
 
@@ -20,10 +19,12 @@ neurocLite(...)
 \item{release}{Stable, development, or release version}
 
 \item{release_repo}{Repo for release repository, passed to
-\code{\link{install.packages}}}
+\code{\link{install.packages}}.  If \code{release_repo = "github"},
+then it will install using GitHub}
 
 \item{upgrade_dependencies}{Should dependencies be updated?
-passed to \code{\link[devtools]{install}}}
+passed to \code{\link[devtools]{install}} if using
+\code{release_repo = "github"}}
 
 \item{...}{additional arguments passed to
 \code{\link[devtools]{install_github}} or

@@ -1,24 +1,30 @@
 #' @title Neuroconductor Installer
 #' @description Install function for neuroconductor packages
 #' @param repo Package name in neuroconductor
-#' @param release Stable, development, or release version
+#' @param release Stable or current (development) versions/branches
 #' @param release_repo Repo for release repository, passed to
-#' \code{\link{install.packages}}
+#' \code{\link{install.packages}}.  If \code{release_repo = "github"},
+#' then it will install using GitHub
 #'
 #' @param upgrade_dependencies Should dependencies be updated?
-#' passed to \code{\link[devtools]{install}}
+#' passed to \code{\link[devtools]{install}} if using
+#' \code{release_repo = "github"}
 #' @param ... additional arguments passed to
-#' \code{\link[devtools]{install_github}} or
-#' \code{\link{install.packages}} (for release)
-#' @return Result from \code{\link[devtools]{install_github}}
+#' \code{\link{install.packages}}
+#' or \code{\link[devtools]{install_github}} if
+#' \code{release_repo = "github"}
+#'
+#' @return Result from  \code{\link{install.packages}} or
+#' \code{\link[devtools]{install_github}}
+#'
 #' @export
 #' @importFrom devtools install_github
 #' @importFrom utils read.csv
 #' @importFrom utils compareVersion install.packages installed.packages
 neuro_install = function(
   repo,
-  release = c("stable", "current", "release"),
-  release_repo = current_neuroc_release(),
+  release = c("stable", "current"),
+  release_repo = latest_neuroc_release(release = release),
   upgrade_dependencies = FALSE,
   ...){
 
@@ -27,13 +33,15 @@ neuro_install = function(
   #############################
   release = match.arg(release)
 
-  if (release == "release") {
+  l_repo = trimws(tolower(release_repo))
+
+  if (!l_repo %in% "github") {
     x = install.packages(pkgs = repo, repos = release_repo, ...)
     not_installed = repo[!repo %in% installed.packages()]
     if (length(not_installed) > 0) {
       msg = paste0("Package(s): ", paste(not_installed, sep = ", "),
-                   " released binaries were not installed,",
-                   " please try to install with release = \"stable\"")
+                   " released binaries/sources were not installed,",
+                   " please try to install with release_repo = \"github\"")
       warning(msg)
     }
     return(invisible(x))

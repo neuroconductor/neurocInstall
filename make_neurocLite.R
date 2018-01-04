@@ -14,7 +14,7 @@ vc = paste0("\t", vc)
 content = c(content, vc)
 
 
-vc = readLines("R/current_neuroc_release.R")
+vc = readLines("R/latest_neuroc_release.R")
 vc = paste0("\t", vc)
 content = c(content, vc)
 
