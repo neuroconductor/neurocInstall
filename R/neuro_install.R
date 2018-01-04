@@ -21,6 +21,11 @@
 #' @importFrom devtools install_github
 #' @importFrom utils read.csv
 #' @importFrom utils compareVersion install.packages installed.packages
+#'
+#' @examples \dontrun{
+#'    neuro_install("cifti", lib = tempfile())
+#' }
+#'
 neuro_install = function(
   repo,
   release = c("stable", "current"),

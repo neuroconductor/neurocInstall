@@ -7,7 +7,8 @@
 \title{Neuroconductor Installer}
 \usage{
 neuro_install(repo, release = c("stable", "current"),
-  release_repo = latest_neuroc_release(), upgrade_dependencies = FALSE, ...)
+  release_repo = latest_neuroc_release(release = release),
+  upgrade_dependencies = FALSE, ...)
 
 neuroc_install(...)
 
@@ -16,7 +17,7 @@ neurocLite(...)
 \arguments{
 \item{repo}{Package name in neuroconductor}
 
-\item{release}{Stable, development, or release version}
+\item{release}{Stable or current (development) versions/branches}
 
 \item{release_repo}{Repo for release repository, passed to
 \code{\link{install.packages}}.  If \code{release_repo = "github"},
@@ -27,12 +28,20 @@ passed to \code{\link[devtools]{install}} if using
 \code{release_repo = "github"}}
 
 \item{...}{additional arguments passed to
-\code{\link[devtools]{install_github}} or
-\code{\link{install.packages}} (for release)}
+\code{\link{install.packages}}
+or \code{\link[devtools]{install_github}} if
+\code{release_repo = "github"}}
 }
 \value{
-Result from \code{\link[devtools]{install_github}}
+Result from  \code{\link{install.packages}} or
+\code{\link[devtools]{install_github}}
 }
 \description{
 Install function for neuroconductor packages
+}
+\examples{
+\dontrun{
+   neuro_install("cifti", lib = tempfile())
+}
+
 }
