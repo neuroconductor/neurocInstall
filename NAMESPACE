@@ -2,6 +2,7 @@
 
 export(latest_neuroc_release)
 export(make_full_version)
+export(make_release_version)
 export(neuro_install)
 export(neuro_package_table)
 export(neuro_packages)
