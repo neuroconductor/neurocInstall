@@ -1,5 +1,5 @@
-# neurocInstall package version: 0.10.0
-pkg_ver = '# neurocInstall package version: 0.10.0'
+# neurocInstall package version: 0.10.1
+pkg_ver = '# neurocInstall package version: 0.10.1'
 source("https://bioconductor.org/biocLite.R")
 biocLite(suppressUpdates = TRUE,
          suppressAutoUpdate = TRUE,
@@ -49,7 +49,9 @@ message(paste("Using neurocLite version:", pkg_ver))
 	#' @param release Stable or current (development) versions/branches
 	#' @param release_repo Repo for release repository, passed to
 	#' \code{\link{install.packages}}.  If \code{release_repo = "github"},
-	#' then it will install using GitHub
+	#' then it will install using GitHub.  If you set this using
+	#' \code{\link{make_release_version}} or specify the URL directly,
+	#' it will override \code{release} option.
 	#'
 	#' @param upgrade_dependencies Should dependencies be updated?
 	#' passed to \code{\link[devtools]{install}} if using
@@ -210,10 +212,21 @@ message(paste("Using neurocLite version:", pkg_ver))
 	  # release_version = "2017/nov/"
 	  release = match.arg(release)
 	  release_version = paste0("latest/", release, "/")
-	    release_version = paste0(
-	   "http", ifelse(secure, "s", ""), "://neuroconductor.org/releases/",
-	    release_version)
+	  release_version = make_release_version(release_version, secure = secure)
+	  return(release_version)
 	}
+	
+	#' @rdname latest_neuroc_release
+	#' @param release_path path to the release on
+	#' \url{https://neuroconductor.org/releases/}
+	#' @export
+	make_release_version = function(release_path, secure = TRUE) {
+	  release_path = paste0(
+	    "http", ifelse(secure, "s", ""), "://neuroconductor.org/releases/",
+	    release_path)
+	  release_path
+	}
+	
 
 	#' @title Neuroconductor Package Table
 	#' @description Returns the table of Neuroconductor packages

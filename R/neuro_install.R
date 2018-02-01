@@ -4,7 +4,9 @@
 #' @param release Stable or current (development) versions/branches
 #' @param release_repo Repo for release repository, passed to
 #' \code{\link{install.packages}}.  If \code{release_repo = "github"},
-#' then it will install using GitHub
+#' then it will install using GitHub.  If you set this using
+#' \code{\link{make_release_version}} or specify the URL directly,
+#' it will override \code{release} option.
 #'
 #' @param upgrade_dependencies Should dependencies be updated?
 #' passed to \code{\link[devtools]{install}} if using
