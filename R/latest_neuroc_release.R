@@ -12,8 +12,8 @@ latest_neuroc_release = function(
   secure = TRUE) {
   # release_version = "2017/nov/"
   release = match.arg(release)
-  release_path = paste0("latest/", release, "/")
-  release_version = make_release_version(release_path, secure = secure)
+  release_version = paste0("latest/", release, "/")
+  release_version = make_release_version(release_version, secure = secure)
   return(release_version)
 }
 
@@ -21,7 +21,8 @@ latest_neuroc_release = function(
 #' @param release_path path to the release on
 #' \url{https://neuroconductor.org/releases/}
 make_release_version = function(release_path, secure = TRUE) {
-  release_version = paste0(
+  release_path = paste0(
     "http", ifelse(secure, "s", ""), "://neuroconductor.org/releases/",
-    release_version)
+    release_path)
+  release_path
 }
