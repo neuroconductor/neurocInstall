@@ -1,5 +1,5 @@
 #' @importFrom utils citation
-.onLoad <- function(...) {
+.onAttach <- function(...) {
   if (!interactive()) return()
 
   x = citation("neurocInstall")

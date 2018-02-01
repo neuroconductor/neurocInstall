@@ -7,7 +7,7 @@
 \title{Neuroconductor Installer}
 \usage{
 neuro_install(repo, release = c("stable", "current"),
-  release_repo = latest_neuroc_release(release = release),
+  release_repo = make_release_version("2017/nov"),
   upgrade_dependencies = FALSE, ...)
 
 neuroc_install(...)
