@@ -1,3 +1,4 @@
+#' @importFrom utils citation
 .onLoad <- function(...) {
   if (!interactive()) return()
 
