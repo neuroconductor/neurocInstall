@@ -7,7 +7,7 @@
 \usage{
 latest_neuroc_release(release = c("stable", "current"), secure = TRUE)
 
-make_release_version(release_path, secure = TRUE)
+make_release_version(release_path = NULL, secure = TRUE)
 }
 \arguments{
 \item{release}{Stable or current (development) versions}
