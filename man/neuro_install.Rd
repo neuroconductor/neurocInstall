@@ -44,9 +44,11 @@ Install function for neuroconductor packages
    tlib = tempfile()
    dir.create(tlib, showWarnings = FALSE)
    neuro_install("cifti", lib = tlib)
-   neuro_install("cifti", type = "source")
+   neuro_install("cifti", type = "source", lib = tlib)
 \dontrun{
-   neuro_install("cifti", release_repo = latest_neuroc_release("stable"))
+   neuro_install("cifti",
+   release_repo = latest_neuroc_release("stable"),
+   lib = tlib)
 
    neuro_install("cifti", release_repo = "github")
 }
