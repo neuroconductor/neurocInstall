@@ -35,6 +35,7 @@ make_release_version = function(release_path = NULL, secure = TRUE) {
 
 
 #' @rdname latest_neuroc_release
+#' @importFrom utils download.file
 #' @export
 release_versions = function(secure = TRUE) {
   # read from the page Adi Makes
