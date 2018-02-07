@@ -29,11 +29,16 @@
 #'    dir.create(tlib, showWarnings = FALSE)
 #'    neuro_install("cifti", lib = tlib)
 #'    neuro_install("cifti", type = "source")
+#' \dontrun{
+#'    neuro_install("cifti", release_repo = latest_neuroc_release("stable"))
+#'
+#'    neuro_install("cifti", release_repo = "github")
+#' }
 #'
 neuro_install = function(
   repo,
   release = c("stable", "current"),
-  release_repo = make_release_version("2017/nov"),
+  release_repo = make_release_version(),
   upgrade_dependencies = FALSE,
   ...){
 

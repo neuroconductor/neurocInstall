@@ -7,8 +7,7 @@
 \title{Neuroconductor Installer}
 \usage{
 neuro_install(repo, release = c("stable", "current"),
-  release_repo = make_release_version("2017/nov"),
-  upgrade_dependencies = FALSE, ...)
+  release_repo = make_release_version(), upgrade_dependencies = FALSE, ...)
 
 neuroc_install(...)
 
@@ -46,5 +45,10 @@ Install function for neuroconductor packages
    dir.create(tlib, showWarnings = FALSE)
    neuro_install("cifti", lib = tlib)
    neuro_install("cifti", type = "source")
+\dontrun{
+   neuro_install("cifti", release_repo = latest_neuroc_release("stable"))
+
+   neuro_install("cifti", release_repo = "github")
+}
 
 }

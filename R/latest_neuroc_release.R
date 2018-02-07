@@ -23,9 +23,8 @@ latest_neuroc_release = function(
 #' @export
 make_release_version = function(release_path = NULL, secure = TRUE) {
   if (is.null(release_path)) {
-    # read from the page Adi Makes
-    # currently fail
-    stop("Need to read in the page from Adi - JOHN!")
+    df = release_versions()
+    release_path = df$release[1]
   }
   release_path = paste0(
     "http", ifelse(secure, "s", ""), "://neuroconductor.org/releases/",
@@ -33,3 +32,32 @@ make_release_version = function(release_path = NULL, secure = TRUE) {
   release_path
 }
 
+
+
+#' @rdname latest_neuroc_release
+#' @export
+release_versions = function(secure = TRUE) {
+  # read from the page Adi Makes
+  # currently fail
+  url = paste0("http", ifelse(secure, "s", ""),
+               "://neuroconductor.org/api/releases/")
+  destfile = tempfile(fileext = ".txt")
+  x = download.file(url = url, destfile = destfile, quiet = TRUE)
+  if (x != 0) {
+    warning(paste0(
+      "Releases did not download, may be error with downloading ",
+      url))
+  }
+  releases = readLines(destfile)
+  releases = sub("^releases/", "", releases)
+  ss = t(sapply(strsplit(releases, "/"), rbind))
+  colnames(ss) = c("year", "month")
+  df = data.frame(release = releases, stringsAsFactors = FALSE)
+  df = cbind(df, ss, stringsAsFactors = FALSE)
+  df = df[ df$year != "latest", , drop = FALSE]
+  df$year = as.numeric(df$year)
+  df$date = paste0(df$year, "-", df$month, "-01")
+  df$date = as.Date(x = df$date, format = "%Y-%b-%d")
+  df = df[ order(df$date, decreasing = TRUE), , drop = FALSE]
+  return(df)
+}

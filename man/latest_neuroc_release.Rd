@@ -3,11 +3,14 @@
 \name{latest_neuroc_release}
 \alias{latest_neuroc_release}
 \alias{make_release_version}
+\alias{release_versions}
 \title{Latest Neuroconductor Release Location}
 \usage{
 latest_neuroc_release(release = c("stable", "current"), secure = TRUE)
 
 make_release_version(release_path = NULL, secure = TRUE)
+
+release_versions(secure = TRUE)
 }
 \arguments{
 \item{release}{Stable or current (development) versions}
