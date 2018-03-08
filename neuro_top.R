@@ -1,6 +1,5 @@
 source("https://bioconductor.org/biocLite.R")
-biocLite("Biobase",
-         suppressUpdates = TRUE,
+biocLite(suppressUpdates = TRUE,
          suppressAutoUpdate = TRUE,
          ask = FALSE)
 # if (!require("neurocInstall")) {

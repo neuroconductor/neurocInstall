@@ -1,8 +1,7 @@
 # neurocInstall package version: 0.10.3
 pkg_ver = '# neurocInstall package version: 0.10.3'
 source("https://bioconductor.org/biocLite.R")
-biocLite("Biobase",
-         suppressUpdates = TRUE,
+biocLite(suppressUpdates = TRUE,
          suppressAutoUpdate = TRUE,
          ask = FALSE)
 # if (!require("neurocInstall")) {
@@ -71,6 +70,10 @@ message(paste("Using neurocLite version:", pkg_ver))
 	#' @importFrom utils compareVersion install.packages installed.packages
 	#'
 	#' @examples
+	#'    repos = getOption("repos")
+	#'    if (!"CRAN" %in% names(repos)) {
+	#'        chooseCRANmirror(graphics=FALSE, ind=1)
+	#'    }
 	#'    tlib = tempfile()
 	#'    dir.create(tlib, showWarnings = FALSE)
 	#'    neuro_install("cifti", lib = tlib)
@@ -99,7 +102,8 @@ message(paste("Using neurocLite version:", pkg_ver))
 	
 	  if (!l_repo %in% "github") {
 	    x = install.packages(pkgs = repo,
-	                         repos = c(release_repo, getOption("repos")),
+	                         repos = c(Neuroconductor = release_repo,
+	                                   getOption("repos")),
 	                         ...)
 	    not_installed = repo[!repo %in% installed.packages()]
 	    if (length(not_installed) > 0) {

@@ -41,6 +41,10 @@ Result from  \code{\link{install.packages}} or
 Install function for neuroconductor packages
 }
 \examples{
+   repos = getOption("repos")
+   if (!"CRAN" \%in\% names(repos)) {
+       chooseCRANmirror(graphics=FALSE, ind=1)
+   }
    tlib = tempfile()
    dir.create(tlib, showWarnings = FALSE)
    neuro_install("cifti", lib = tlib)

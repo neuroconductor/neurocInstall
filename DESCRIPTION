@@ -1,6 +1,6 @@
 Package: neurocInstall
 Type: Package
-Title: Neuroconductor Installer
+Title: 'Neuroconductor' Installer
 Version: 0.10.3
 Author: John Muschelli <muschellij2@gmail.com>
 Maintainer: John Muschelli <muschellij2@gmail.com>

@@ -25,6 +25,10 @@
 #' @importFrom utils compareVersion install.packages installed.packages
 #'
 #' @examples
+#'    repos = getOption("repos")
+#'    if (!"CRAN" %in% names(repos)) {
+#'        chooseCRANmirror(graphics=FALSE, ind=1)
+#'    }
 #'    tlib = tempfile()
 #'    dir.create(tlib, showWarnings = FALSE)
 #'    neuro_install("cifti", lib = tlib)
@@ -53,7 +57,8 @@ neuro_install = function(
 
   if (!l_repo %in% "github") {
     x = install.packages(pkgs = repo,
-                         repos = c(release_repo, getOption("repos")),
+                         repos = c(Neuroconductor = release_repo,
+                                   getOption("repos")),
                          ...)
     not_installed = repo[!repo %in% installed.packages()]
     if (length(not_installed) > 0) {
