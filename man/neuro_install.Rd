@@ -44,14 +44,15 @@ Install function for neuroconductor packages
    repos = getOption("repos")
    print(repos)
    if (repos["CRAN"] == "@CRAN@") {
-       chooseCRANmirror(graphics = FALSE, ind = 1)
+       repos["CRAN"] = "https://cloud.r-project.org"
+       options(repos = repos)
    }
    print(getOption("repos"))
    tlib = tempfile()
    dir.create(tlib, showWarnings = FALSE)
    neuro_install("cifti", lib = tlib)
-   neuro_install("cifti", type = "source", lib = tlib)
 \dontrun{
+   neuro_install("cifti", type = "source", lib = tlib)
    neuro_install("cifti",
    release_repo = latest_neuroc_release("stable"),
    lib = tlib)
