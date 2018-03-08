@@ -74,6 +74,7 @@ message(paste("Using neurocLite version:", pkg_ver))
 	#'    if (!"CRAN" %in% names(repos)) {
 	#'        chooseCRANmirror(graphics=FALSE, ind=1)
 	#'    }
+	#'    print(getOption("repos"))
 	#'    tlib = tempfile()
 	#'    dir.create(tlib, showWarnings = FALSE)
 	#'    neuro_install("cifti", lib = tlib)

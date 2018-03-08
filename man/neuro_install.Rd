@@ -45,6 +45,7 @@ Install function for neuroconductor packages
    if (!"CRAN" \%in\% names(repos)) {
        chooseCRANmirror(graphics=FALSE, ind=1)
    }
+   print(getOption("repos"))
    tlib = tempfile()
    dir.create(tlib, showWarnings = FALSE)
    neuro_install("cifti", lib = tlib)
