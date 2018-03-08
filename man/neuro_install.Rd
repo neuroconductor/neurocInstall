@@ -42,8 +42,9 @@ Install function for neuroconductor packages
 }
 \examples{
    repos = getOption("repos")
-   if (!"CRAN" \%in\% names(repos)) {
-       chooseCRANmirror(graphics=FALSE, ind=1)
+   print(repos)
+   if (repos["CRAN"] == "@CRAN@") {
+       chooseCRANmirror(graphics = FALSE, ind = 1)
    }
    print(getOption("repos"))
    tlib = tempfile()

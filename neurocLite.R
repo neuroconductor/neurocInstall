@@ -71,8 +71,9 @@ message(paste("Using neurocLite version:", pkg_ver))
 	#'
 	#' @examples
 	#'    repos = getOption("repos")
-	#'    if (!"CRAN" %in% names(repos)) {
-	#'        chooseCRANmirror(graphics=FALSE, ind=1)
+	#'    print(repos)
+	#'    if (repos["CRAN"] == "@CRAN@") {
+	#'        chooseCRANmirror(graphics = FALSE, ind = 1)
 	#'    }
 	#'    print(getOption("repos"))
 	#'    tlib = tempfile()
@@ -286,7 +287,7 @@ message(paste("Using neurocLite version:", pkg_ver))
 	#' @export
 	#'
 	#' @note Package information is obtained from
-	#' \url{"https://neuroconductor.org/neurocPackages"}
+	#' \url{https://neuroconductor.org/neurocPackages}
 	#'
 	#' @importFrom stats reshape
 	#' @examples

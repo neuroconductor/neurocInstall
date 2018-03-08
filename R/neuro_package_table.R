@@ -6,7 +6,7 @@
 #' @export
 #'
 #' @note Package information is obtained from
-#' \url{"https://neuroconductor.org/neurocPackages"}
+#' \url{https://neuroconductor.org/neurocPackages}
 #'
 #' @importFrom stats reshape
 #' @examples
