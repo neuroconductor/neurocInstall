@@ -52,7 +52,9 @@ neuro_install = function(
   l_repo = trimws(tolower(release_repo))
 
   if (!l_repo %in% "github") {
-    x = install.packages(pkgs = repo, repos = release_repo, ...)
+    x = install.packages(pkgs = repo,
+                         repos = c(release_repo, getOption("repos")),
+                         ...)
     not_installed = repo[!repo %in% installed.packages()]
     if (length(not_installed) > 0) {
       msg = paste0("Package(s): ", paste(not_installed, sep = ", "),

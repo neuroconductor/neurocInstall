@@ -1,5 +1,5 @@
-# neurocInstall package version: 0.10.2
-pkg_ver = '# neurocInstall package version: 0.10.2'
+# neurocInstall package version: 0.10.3
+pkg_ver = '# neurocInstall package version: 0.10.3'
 source("https://bioconductor.org/biocLite.R")
 biocLite("Biobase",
          suppressUpdates = TRUE,
@@ -98,7 +98,9 @@ message(paste("Using neurocLite version:", pkg_ver))
 	  l_repo = trimws(tolower(release_repo))
 	
 	  if (!l_repo %in% "github") {
-	    x = install.packages(pkgs = repo, repos = release_repo, ...)
+	    x = install.packages(pkgs = repo,
+	                         repos = c(release_repo, getOption("repos")),
+	                         ...)
 	    not_installed = repo[!repo %in% installed.packages()]
 	    if (length(not_installed) > 0) {
 	      msg = paste0("Package(s): ", paste(not_installed, sep = ", "),

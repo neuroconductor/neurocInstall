@@ -28,4 +28,5 @@ Latest Neuroconductor Release Location
 }
 \examples{
 latest_neuroc_release()
+make_release_version("2018/feb/")
 }
