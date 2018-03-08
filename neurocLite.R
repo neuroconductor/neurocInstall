@@ -1,7 +1,8 @@
 # neurocInstall package version: 0.10.2
 pkg_ver = '# neurocInstall package version: 0.10.2'
 source("https://bioconductor.org/biocLite.R")
-biocLite(suppressUpdates = TRUE,
+biocLite("Biobase",
+         suppressUpdates = TRUE,
          suppressAutoUpdate = TRUE,
          ask = FALSE)
 # if (!require("neurocInstall")) {
@@ -213,6 +214,7 @@ message(paste("Using neurocLite version:", pkg_ver))
 	#'
 	#' @examples
 	#' latest_neuroc_release()
+	#' make_release_version("2018/feb/")
 	latest_neuroc_release = function(
 	  release = c("stable", "current"),
 	  secure = TRUE) {
