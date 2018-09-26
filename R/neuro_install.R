@@ -8,6 +8,9 @@
 #' \code{\link{make_release_version}} or specify the URL directly,
 #' it will override \code{release} option.
 #'
+#' @param type character, indicating the type of package to download and
+#' install, passed to \code{\link{install.packages}}.
+#'
 #' @param upgrade_dependencies Should dependencies be updated?
 #' passed to \code{\link[devtools]{install}} if using
 #' \code{release_repo = "github"}
@@ -49,6 +52,7 @@ neuro_install = function(
   release = c("stable", "current"),
   release_repo = make_release_version(),
   upgrade_dependencies = FALSE,
+  type = getOption("pkgType"),
   ...){
 
   #############################
@@ -62,8 +66,9 @@ neuro_install = function(
     x = install.packages(pkgs = repo,
                          repos = c(Neuroconductor = release_repo,
                                    getOption("repos")),
+                         type = type,
                          ...)
-    not_installed = repo[!repo %in% installed.packages()]
+    not_installed = repo[!repo %in% installed.packages()[, "Package"]]
     if (length(not_installed) > 0) {
       msg = paste0("Package(s): ", paste(not_installed, sep = ", "),
                    " released binaries/sources were not installed,",

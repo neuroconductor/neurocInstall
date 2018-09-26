@@ -50,7 +50,12 @@ release_versions = function(secure = TRUE) {
       "Releases did not download, may be error with downloading ",
       url))
   }
-  releases = readLines(destfile)
+  releases = readLines(destfile, warn = FALSE)
+  releases = releases[grepl("releases/", releases)]
+  releases = gsub('"', "", releases)
+  releases = trimws(releases)
+  releases = sub(',$', "", releases)
+
   releases = sub("^releases/", "", releases)
   ss = t(sapply(strsplit(releases, "/"), rbind))
   colnames(ss) = c("year", "month")

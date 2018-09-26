@@ -1,5 +1,5 @@
-# neurocInstall package version: 0.10.3
-pkg_ver = '# neurocInstall package version: 0.10.3'
+# neurocInstall package version: 0.10.4
+pkg_ver = '# neurocInstall package version: 0.10.4'
 source("https://bioconductor.org/biocLite.R")
 biocLite(suppressUpdates = TRUE,
          suppressAutoUpdate = TRUE,
@@ -53,6 +53,9 @@ message(paste("Using neurocLite version:", pkg_ver))
 	#' \code{\link{make_release_version}} or specify the URL directly,
 	#' it will override \code{release} option.
 	#'
+	#' @param type character, indicating the type of package to download and
+	#' install, passed to \code{\link{install.packages}}.
+	#'
 	#' @param upgrade_dependencies Should dependencies be updated?
 	#' passed to \code{\link[devtools]{install}} if using
 	#' \code{release_repo = "github"}
@@ -94,6 +97,7 @@ message(paste("Using neurocLite version:", pkg_ver))
 	  release = c("stable", "current"),
 	  release_repo = make_release_version(),
 	  upgrade_dependencies = FALSE,
+	  type = getOption("pkgType"),
 	  ...){
 	
 	  #############################
@@ -107,8 +111,9 @@ message(paste("Using neurocLite version:", pkg_ver))
 	    x = install.packages(pkgs = repo,
 	                         repos = c(Neuroconductor = release_repo,
 	                                   getOption("repos")),
+	                         type = type,
 	                         ...)
-	    not_installed = repo[!repo %in% installed.packages()]
+	    not_installed = repo[!repo %in% installed.packages()[, "Package"]]
 	    if (length(not_installed) > 0) {
 	      msg = paste0("Package(s): ", paste(not_installed, sep = ", "),
 	                   " released binaries/sources were not installed,",
@@ -266,7 +271,12 @@ message(paste("Using neurocLite version:", pkg_ver))
 	      "Releases did not download, may be error with downloading ",
 	      url))
 	  }
-	  releases = readLines(destfile)
+	  releases = readLines(destfile, warn = FALSE)
+	  releases = releases[grepl("releases/", releases)]
+	  releases = gsub('"', "", releases)
+	  releases = trimws(releases)
+	  releases = sub(',$', "", releases)
+	
 	  releases = sub("^releases/", "", releases)
 	  ss = t(sapply(strsplit(releases, "/"), rbind))
 	  colnames(ss) = c("year", "month")

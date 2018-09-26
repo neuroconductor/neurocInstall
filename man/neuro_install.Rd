@@ -7,7 +7,8 @@
 \title{Neuroconductor Installer}
 \usage{
 neuro_install(repo, release = c("stable", "current"),
-  release_repo = make_release_version(), upgrade_dependencies = FALSE, ...)
+  release_repo = make_release_version(), upgrade_dependencies = FALSE,
+  type = getOption("pkgType"), ...)
 
 neuroc_install(...)
 
@@ -27,6 +28,9 @@ it will override \code{release} option.}
 \item{upgrade_dependencies}{Should dependencies be updated?
 passed to \code{\link[devtools]{install}} if using
 \code{release_repo = "github"}}
+
+\item{type}{character, indicating the type of package to download and
+install, passed to \code{\link{install.packages}}.}
 
 \item{...}{additional arguments passed to
 \code{\link{install.packages}}
