@@ -1,5 +1,5 @@
-# neurocInstall package version: 0.10.4
-pkg_ver = '# neurocInstall package version: 0.10.4'
+# neurocInstall package version: 0.11.0
+pkg_ver = '# neurocInstall package version: 0.11.0'
 source("https://bioconductor.org/biocLite.R")
 biocLite(suppressUpdates = TRUE,
          suppressAutoUpdate = TRUE,
