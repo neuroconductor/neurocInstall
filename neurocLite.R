@@ -251,9 +251,14 @@ message(paste("Using neurocLite version:", pkg_ver))
 	#' \url{https://neuroconductor.org/releases/}
 	#' @export
 	make_release_version = function(release_path = NULL, secure = TRUE) {
+	  df = release_versions()
+	
 	  if (is.null(release_path)) {
-	    df = release_versions()
 	    release_path = df$release[1]
+	  }
+	  if (!all(release_path %in% df$release)) {
+	    warning(paste0("Release path created, but not in the ",
+	                   "Neurocondcutor set of releases"))
 	  }
 	  release_path = paste0(
 	    "http", ifelse(secure, "s", ""), "://neuroconductor.org/releases/",
