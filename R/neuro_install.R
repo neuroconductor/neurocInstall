@@ -50,7 +50,7 @@
 neuro_install = function(
   repo,
   release = c("stable", "current"),
-  release_repo = make_release_version(),
+  release_repo = latest_neuroc_release(),
   upgrade_dependencies = FALSE,
   type = getOption("pkgType"),
   ...){

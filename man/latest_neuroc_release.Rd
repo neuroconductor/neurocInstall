@@ -2,20 +2,23 @@
 % Please edit documentation in R/latest_neuroc_release.R
 \name{latest_neuroc_release}
 \alias{latest_neuroc_release}
+\alias{binary_release_repo}
 \alias{make_release_version}
 \alias{release_versions}
 \title{Latest Neuroconductor Release Location}
 \usage{
-latest_neuroc_release(release = c("stable", "current"), secure = TRUE)
+latest_neuroc_release(secure = TRUE)
+
+binary_release_repo(release = c("stable", "current"), secure = TRUE)
 
 make_release_version(release_path = NULL, secure = TRUE)
 
 release_versions(secure = TRUE)
 }
 \arguments{
-\item{release}{Stable or current (development) versions}
-
 \item{secure}{Should https vs. http be used}
+
+\item{release}{Stable or current (development) versions}
 
 \item{release_path}{path to the release on
 \url{https://neuroconductor.org/releases/}}

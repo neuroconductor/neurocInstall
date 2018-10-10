@@ -95,7 +95,7 @@ message(paste("Using neurocLite version:", pkg_ver))
 	neuro_install = function(
 	  repo,
 	  release = c("stable", "current"),
-	  release_repo = make_release_version(),
+	  release_repo = latest_neuroc_release(),
 	  upgrade_dependencies = FALSE,
 	  type = getOption("pkgType"),
 	  ...){
@@ -229,10 +229,17 @@ message(paste("Using neurocLite version:", pkg_ver))
 	#' @examples
 	#' latest_neuroc_release()
 	#' make_release_version("2018/feb/")
-	latest_neuroc_release = function(
+	latest_neuroc_release = function(secure = TRUE) {
+	  make_release_version(
+	    release_path = NULL,
+	    secure = secure)
+	}
+	
+	#' @rdname latest_neuroc_release
+	#' @export
+	binary_release_repo = function(
 	  release = c("stable", "current"),
 	  secure = TRUE) {
-	  # release_version = "2017/nov/"
 	  release = match.arg(release)
 	  release_version = paste0("latest/", release, "/")
 	  release_version = make_release_version(release_version, secure = secure)
