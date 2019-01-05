@@ -1,5 +1,5 @@
-# neurocInstall package version: 0.11.0
-pkg_ver = '# neurocInstall package version: 0.11.0'
+# neurocInstall package version: 0.11.1
+pkg_ver = '# neurocInstall package version: 0.11.1'
 source("https://bioconductor.org/biocLite.R")
 biocLite(suppressUpdates = TRUE,
          suppressAutoUpdate = TRUE,
@@ -155,20 +155,22 @@ message(paste("Using neurocLite version:", pkg_ver))
 	  tab = data.frame(tab, stringsAsFactors = FALSE)
 	  tab$repo = paste0("neuroconductor/", tab$repo, "@", tab$commit_id)
 	
+	  args = list(tab$repo)
+	  if ("upgrade" %in% formalArgs(install_github)) {
+	    args$upgrade = upgrade_dependencies
+	  } else {
+	    args$upgrade_dependencies = upgrade_dependencies
+	  }
+	
 	  if (!upgrade_dependencies) {
 	    res = try({
-	      results = devtools::install_github(
-	        tab$repo,
-	        upgrade_dependencies = upgrade_dependencies,
-	        ...)
+	      results = do.call(devtools::install_github, args = args)
 	    })
 	    if (inherits(res, "try-error") || any(!results)) {
 	      stop("Installation failed, please try with upgrade_dependencies = TRUE")
 	    }
 	  } else {
-	    devtools::install_github(tab$repo,
-	                             upgrade_dependencies = upgrade_dependencies,
-	                             ...)
+	    results = do.call(devtools::install_github, args = args)
 	  }
 	}
 	
