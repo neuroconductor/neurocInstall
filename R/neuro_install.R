@@ -111,7 +111,8 @@ neuro_install = function(
   tab$repo = paste0("neuroconductor/", tab$repo, "@", tab$commit_id)
 
   args = list(tab$repo)
-  if ("upgrade" %in% formalArgs(install_github)) {
+  gh_func = devtools::install_github
+  if ("upgrade" %in% formalArgs(gh_func)) {
     args$upgrade = upgrade_dependencies
   } else {
     args$upgrade_dependencies = upgrade_dependencies
@@ -119,13 +120,13 @@ neuro_install = function(
 
   if (!upgrade_dependencies) {
     res = try({
-      results = do.call(devtools::install_github, args = args)
+      results = do.call(gh_func, args = args)
     })
     if (inherits(res, "try-error") || any(!results)) {
       stop("Installation failed, please try with upgrade_dependencies = TRUE")
     }
   } else {
-    results = do.call(devtools::install_github, args = args)
+    results = do.call(gh_func, args = args)
   }
 }
 

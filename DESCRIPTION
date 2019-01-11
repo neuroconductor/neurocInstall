@@ -1,7 +1,7 @@
 Package: neurocInstall
 Type: Package
 Title: 'Neuroconductor' Installer
-Version: 0.11.1
+Version: 0.11.2
 Author: John Muschelli <muschellij2@gmail.com>
 Maintainer: John Muschelli <muschellij2@gmail.com>
 Description: Installs 'neuroconductor' packages from GitHub repository.
@@ -15,4 +15,4 @@ Suggests: testthat,
     knitr,
     rmarkdown
 VignetteBuilder: knitr
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
