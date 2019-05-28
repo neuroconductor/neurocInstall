@@ -7,7 +7,8 @@ Maintainer: John Muschelli <muschellij2@gmail.com>
 Description: Installs 'neuroconductor' packages from GitHub repository.
 Imports:
     devtools (>= 1.12.0.9000),
-    utils 
+    utils,
+    methods
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
