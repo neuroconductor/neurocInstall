@@ -39,7 +39,7 @@ if (length(dtools) == 0 ) {
 } else {
   comparison = compareVersion(dtools, "1.12.0.9000")
   if (comparison < 0) {
-    devtools::install_github("hadley/devtools")
+    devtools::install_github("r-lib/devtools")
   }
 }
 message(paste("Using neurocLite version:", pkg_ver))
