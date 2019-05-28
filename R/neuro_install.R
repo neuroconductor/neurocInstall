@@ -122,7 +122,12 @@ neuro_install = function(
     res = try({
       results = do.call(gh_func, args = args)
     })
-    if (inherits(res, "try-error") || any(!results)) {
+    if (is.logical(results)) {
+      check = any(!results)
+    } else {
+      check = FALSE
+    }
+    if (inherits(res, "try-error") || check) {
       stop("Installation failed, please try with upgrade_dependencies = TRUE")
     }
   } else {

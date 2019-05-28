@@ -37,7 +37,7 @@ make_release_version = function(release_path = NULL, secure = TRUE) {
   }
   if (!all(release_path %in% df$release)) {
     warning(paste0("Release path created, but not in the ",
-                   "Neurocondcutor set of releases"))
+                   "Neuroconductor set of releases"))
   }
   release_path = paste0(
     "http", ifelse(secure, "s", ""), "://neuroconductor.org/releases/",

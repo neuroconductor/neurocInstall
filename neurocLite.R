@@ -1,9 +1,12 @@
 # neurocInstall package version: 0.11.2
 pkg_ver = '# neurocInstall package version: 0.11.2'
-source("https://bioconductor.org/biocLite.R")
-biocLite(suppressUpdates = TRUE,
-         suppressAutoUpdate = TRUE,
-         ask = FALSE)
+# source("https://bioconductor.org/biocLite.R")
+# biocLite(suppressUpdates = TRUE,
+#          suppressAutoUpdate = TRUE,
+#          ask = FALSE)
+if (!requireNamespace("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+BiocManager::install(update = FALSE, ask = FALSE)
 # if (!require("neurocInstall")) {
 #########################################
 # Checking devtools version
@@ -167,7 +170,12 @@ message(paste("Using neurocLite version:", pkg_ver))
 	    res = try({
 	      results = do.call(gh_func, args = args)
 	    })
-	    if (inherits(res, "try-error") || any(!results)) {
+	    if (is.logical(results)) {
+	      check = any(!results)
+	    } else {
+	      check = FALSE
+	    }
+	    if (inherits(res, "try-error") || check) {
 	      stop("Installation failed, please try with upgrade_dependencies = TRUE")
 	    }
 	  } else {
@@ -261,7 +269,7 @@ message(paste("Using neurocLite version:", pkg_ver))
 	  }
 	  if (!all(release_path %in% df$release)) {
 	    warning(paste0("Release path created, but not in the ",
-	                   "Neurocondcutor set of releases"))
+	                   "Neuroconductor set of releases"))
 	  }
 	  release_path = paste0(
 	    "http", ifelse(secure, "s", ""), "://neuroconductor.org/releases/",

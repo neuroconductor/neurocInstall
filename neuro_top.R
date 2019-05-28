@@ -1,7 +1,10 @@
-source("https://bioconductor.org/biocLite.R")
-biocLite(suppressUpdates = TRUE,
-         suppressAutoUpdate = TRUE,
-         ask = FALSE)
+# source("https://bioconductor.org/biocLite.R")
+# biocLite(suppressUpdates = TRUE,
+#          suppressAutoUpdate = TRUE,
+#          ask = FALSE)
+if (!requireNamespace("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+BiocManager::install(update = FALSE, ask = FALSE)
 # if (!require("neurocInstall")) {
 #########################################
 # Checking devtools version
