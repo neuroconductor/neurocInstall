@@ -112,7 +112,7 @@ neuro_install = function(
 
   args = list(tab$repo)
   gh_func = devtools::install_github
-  if ("upgrade" %in% formalArgs(gh_func)) {
+  if ("upgrade" %in% methods::formalArgs(gh_func)) {
     args$upgrade = upgrade_dependencies
   } else {
     args$upgrade_dependencies = upgrade_dependencies
