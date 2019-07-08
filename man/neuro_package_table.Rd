@@ -5,12 +5,14 @@
 \title{Neuroconductor Package Table}
 \usage{
 neuro_package_table(path = "https://neuroconductor.org/neurocPackages",
-  long = FALSE)
+  long = FALSE, deployment = FALSE)
 }
 \arguments{
 \item{path}{Path to the table of package}
 
 \item{long}{Should the data be "long" (with respect to stable/current)}
+
+\item{deployment}{indicator if this is a release, not standard flag.}
 }
 \value{
 \code{data.frame} of packages with commit IDs
