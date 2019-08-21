@@ -1,5 +1,5 @@
-# neurocInstall package version: 0.11.2
-pkg_ver = '# neurocInstall package version: 0.11.2'
+# neurocInstall package version: 0.11.3
+pkg_ver = '# neurocInstall package version: 0.11.3'
 # source("https://bioconductor.org/biocLite.R")
 # biocLite(suppressUpdates = TRUE,
 #          suppressAutoUpdate = TRUE,
@@ -160,7 +160,7 @@ message(paste("Using neurocLite version:", pkg_ver))
 	
 	  args = list(tab$repo)
 	  gh_func = devtools::install_github
-	  if ("upgrade" %in% formalArgs(gh_func)) {
+	  if ("upgrade" %in% methods::formalArgs(gh_func)) {
 	    args$upgrade = upgrade_dependencies
 	  } else {
 	    args$upgrade_dependencies = upgrade_dependencies
@@ -318,6 +318,7 @@ message(paste("Using neurocLite version:", pkg_ver))
 	#' @return \code{data.frame} of packages with commit IDs
 	#' @param path Path to the table of package
 	#' @param long Should the data be "long" (with respect to stable/current)
+	#' @param deployment indicator if this is a release, not standard flag.
 	#' @export
 	#'
 	#' @note Package information is obtained from
@@ -328,14 +329,15 @@ message(paste("Using neurocLite version:", pkg_ver))
 	#' neuro_package_table()
 	neuro_package_table = function(
 	  path = "https://neuroconductor.org/neurocPackages",
-	  long = FALSE
+	  long = FALSE,
+	  deployment = FALSE
 	) {
 	  #############################
 	  ## grab list of current neuroc packages
 	  #############################
 	  args = list(file = path,
 	              stringsAsFactors = FALSE, header = TRUE,
-	              na.strings = "")
+	              na.strings = ifelse(deployment, "NA", ""))
 	  suppressWarnings({
 	    tab = try( {
 	      do.call("read.csv", args)
@@ -346,6 +348,9 @@ message(paste("Using neurocLite version:", pkg_ver))
 	    tab = do.call("read.csv", args)
 	  }
 	
+	  if (nrow(tab) == 0) {
+	    return(NULL)
+	  }
 	  xcn = colnames(tab) = c("repo",
 	                          "version.stable",
 	                          "neuroc_version.stable",
@@ -353,8 +358,9 @@ message(paste("Using neurocLite version:", pkg_ver))
 	                          "version.current",
 	                          "neuroc_version.current",
 	                          "commit_id.current")
-	
-	  tab$v = package_version(tab$version.stable)
+	  bad_version = is.na(tab$version.stable) | tab$version.stable %in% ""
+	  tab$v = "0.0.0"
+	  tab$v[!bad_version] = package_version(tab$version.stable[!bad_version])
 	  if (nrow(tab) == 0 & !long) {
 	    return(tab)
 	  }
