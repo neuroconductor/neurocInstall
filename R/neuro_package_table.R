@@ -33,6 +33,9 @@ neuro_package_table = function(
     tab = do.call("read.csv", args)
   }
 
+  if (nrow(tab) == 0) {
+    return(NULL)
+  }
   xcn = colnames(tab) = c("repo",
                           "version.stable",
                           "neuroc_version.stable",
