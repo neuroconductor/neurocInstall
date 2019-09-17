@@ -111,11 +111,26 @@ message(paste("Using neurocLite version:", pkg_ver))
 	  l_repo = trimws(tolower(release_repo))
 	
 	  if (!l_repo %in% "github") {
-	    x = install.packages(pkgs = repo,
-	                         repos = c(Neuroconductor = release_repo,
-	                                   getOption("repos")),
-	                         type = type,
-	                         ...)
+	    args = list(...)
+	    repos = args$repos
+	    repos = c(Neuroconductor = release_repo,
+	              getOption("repos"),
+	              repos)
+	    args$repos = repos
+	    contriburl = utils::contrib.url(repos, type)
+	    if ("contriburl" %in% names(args)) {
+	      args$contriburl = c(contriburl, args$contriburl)
+	    }
+	    args$pkgs = repo
+	    args$repos = repos
+	    args$type = type
+	    x = do.call(install.packages, args = args)
+	    # x = install.packages(pkgs = repo,
+	    #                      repos = c(Neuroconductor = release_repo,
+	    #                                getOption("repos")),
+	    #                      type = type,
+	    #
+	    #                      ...)
 	    not_installed = repo[!repo %in% installed.packages()[, "Package"]]
 	    if (length(not_installed) > 0) {
 	      msg = paste0("Package(s): ", paste(not_installed, sep = ", "),
