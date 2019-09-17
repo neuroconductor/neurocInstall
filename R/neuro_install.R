@@ -70,6 +70,10 @@ neuro_install = function(
               repos)
     args$repos = repos
     contriburl = utils::contrib.url(repos, type)
+    repos = c(Neuroconductor = release_repo,
+              getOption("repos"),
+              repos)
+    repos = repos[ repos != "@CRAN@" ]
     if ("contriburl" %in% names(args)) {
       args$contriburl = c(contriburl, args$contriburl)
     }
