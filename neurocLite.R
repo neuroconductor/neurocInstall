@@ -1,5 +1,5 @@
-# neurocInstall package version: 0.11.3
-pkg_ver = '# neurocInstall package version: 0.11.3'
+# neurocInstall package version: 0.12.0
+pkg_ver = '# neurocInstall package version: 0.12.0'
 # source("https://bioconductor.org/biocLite.R")
 # biocLite(suppressUpdates = TRUE,
 #          suppressAutoUpdate = TRUE,
@@ -307,11 +307,20 @@ message(paste("Using neurocLite version:", pkg_ver))
 	  url = paste0("http", ifelse(secure, "s", ""),
 	               "://neuroconductor.org/api/releases/")
 	  destfile = tempfile(fileext = ".txt")
-	  x = download.file(url = url, destfile = destfile, quiet = TRUE)
-	  if (x != 0) {
+	  x = try({
+	    download.file(url = url, destfile = destfile, quiet = TRUE)
+	  }, silent = TRUE)
+	  if (inherits(x, "try-error") || x != 0) {
 	    warning(paste0(
 	      "Releases did not download, may be error with downloading ",
 	      url))
+	    if (requireNamespace("httr", quietly = TRUE)) {
+	      url = sub("https", "http", url)
+	      res = httr::GET(url,
+	                httr::write_disk(path = destfile, overwrite = TRUE),
+	                config = httr::config(ssl_verifypeer = FALSE))
+	      httr::warn_for_status(res)
+	    }
 	  }
 	  releases = readLines(destfile, warn = FALSE)
 	  releases = releases[grepl("releases/", releases)]
@@ -364,7 +373,21 @@ message(paste("Using neurocLite version:", pkg_ver))
 	  })
 	  if (inherits(tab, "try-error")) {
 	    args$file = gsub("^https", "http", args$file)
-	    tab = do.call("read.csv", args)
+	    suppressWarnings({
+	      tab = try( {
+	        do.call("read.csv", args)
+	      } , silent = TRUE)
+	    })
+	    if (inherits(tab, "try-error")) {
+	      if (requireNamespace("httr", quietly = TRUE)) {
+	        destfile = tempfile()
+	        httr::GET(args$file,
+	                  httr::write_disk(path = destfile),
+	                  config = httr::config(ssl_verifypeer = FALSE))
+	        args$file = destfile
+	        tab = do.call("read.csv", args)
+	      }
+	    }
 	  }
 	
 	  if (nrow(tab) == 0) {

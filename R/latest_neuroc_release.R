@@ -56,8 +56,10 @@ release_versions = function(secure = TRUE) {
   url = paste0("http", ifelse(secure, "s", ""),
                "://neuroconductor.org/api/releases/")
   destfile = tempfile(fileext = ".txt")
-  x = download.file(url = url, destfile = destfile, quiet = TRUE)
-  if (x != 0) {
+  x = try({
+    download.file(url = url, destfile = destfile, quiet = TRUE)
+  }, silent = TRUE)
+  if (inherits(x, "try-error") || x != 0) {
     warning(paste0(
       "Releases did not download, may be error with downloading ",
       url))
