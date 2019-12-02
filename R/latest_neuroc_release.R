@@ -61,6 +61,13 @@ release_versions = function(secure = TRUE) {
     warning(paste0(
       "Releases did not download, may be error with downloading ",
       url))
+    if (requireNamespace("httr", quietly = TRUE)) {
+      url = sub("https", "http", url)
+      res = httr::GET(url,
+                httr::write_disk(path = destfile, overwrite = TRUE),
+                config = httr::config(ssl_verifypeer = FALSE))
+      httr::warn_for_status(res)
+    }
   }
   releases = readLines(destfile, warn = FALSE)
   releases = releases[grepl("releases/", releases)]

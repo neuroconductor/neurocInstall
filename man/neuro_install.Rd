@@ -6,9 +6,14 @@
 \alias{neurocLite}
 \title{Neuroconductor Installer}
 \usage{
-neuro_install(repo, release = c("stable", "current"),
-  release_repo = latest_neuroc_release(), upgrade_dependencies = FALSE,
-  type = getOption("pkgType"), ...)
+neuro_install(
+  repo,
+  release = c("stable", "current"),
+  release_repo = latest_neuroc_release(),
+  upgrade_dependencies = FALSE,
+  type = getOption("pkgType"),
+  ...
+)
 
 neuroc_install(...)
 

@@ -4,8 +4,11 @@
 \alias{neuro_package_table}
 \title{Neuroconductor Package Table}
 \usage{
-neuro_package_table(path = "https://neuroconductor.org/neurocPackages",
-  long = FALSE, deployment = FALSE)
+neuro_package_table(
+  path = "https://neuroconductor.org/neurocPackages",
+  long = FALSE,
+  deployment = FALSE
+)
 }
 \arguments{
 \item{path}{Path to the table of package}

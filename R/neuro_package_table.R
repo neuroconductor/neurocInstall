@@ -30,7 +30,21 @@ neuro_package_table = function(
   })
   if (inherits(tab, "try-error")) {
     args$file = gsub("^https", "http", args$file)
-    tab = do.call("read.csv", args)
+    suppressWarnings({
+      tab = try( {
+        do.call("read.csv", args)
+      } , silent = TRUE)
+    })
+    if (inherits(tab, "try-error")) {
+      if (requireNamespace("httr", quietly = TRUE)) {
+        destfile = tempfile()
+        httr::GET(args$file,
+                  httr::write_disk(path = destfile),
+                  config = httr::config(ssl_verifypeer = FALSE))
+        args$file = destfile
+        tab = do.call("read.csv", args)
+      }
+    }
   }
 
   if (nrow(tab) == 0) {
