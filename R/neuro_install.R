@@ -28,9 +28,14 @@
 #' @importFrom utils compareVersion install.packages installed.packages
 #'
 #' @examples
-#'   sys_info = Sys.info()
-#'   os = tolower(sys_info[["sysname"]])
-#'   if (!any(os %in% "linux")) {
+#' if (identical(tolower(Sys.getenv("NOT_CRAN")), "true")) {
+#'    tlib = tempfile()
+#'    dir.create(tlib, showWarnings = FALSE)
+#'    system.time({
+#'    install.packages("oro.asl",
+#'    lib = tlib,
+#'    repos = "https://neuroconductor.org/releases/2019/12/")
+#'    })
 #'    repos = getOption("repos")
 #'    print(repos)
 #'    #if (repos["CRAN"] == "@CRAN@") {
@@ -39,12 +44,10 @@
 #'    #}
 #'    options(repos = NULL)
 #'    print(getOption("repos"))
-#'    tlib = tempfile()
-#'    dir.create(tlib, showWarnings = FALSE)
 #'    neuro_install("oro.asl", lib = tlib,
 #'    release_repo = "https://neuroconductor.org/releases/2019/12")
 #'    options(repos = repos)
-#'    }
+#'  }
 #' \dontrun{
 #'    neuro_install("cifti", type = "source", lib = tlib)
 #'    neuro_install("cifti",
