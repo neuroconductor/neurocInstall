@@ -52,15 +52,17 @@ Install function for neuroconductor packages
 \examples{
    repos = getOption("repos")
    print(repos)
-   if (repos["CRAN"] == "@CRAN@") {
-       repos["CRAN"] = "https://cloud.r-project.org"
-       options(repos = repos)
-   }
+   #if (repos["CRAN"] == "@CRAN@") {
+   #    repos["CRAN"] = "https://cloud.r-project.org"
+   #    options(repos = repos)
+   #}
+   options(repos = NULL)
    print(getOption("repos"))
    tlib = tempfile()
    dir.create(tlib, showWarnings = FALSE)
    neuro_install("oro.asl", lib = tlib,
    release_repo = "https://neuroconductor.org/releases/2019/12")
+   options(repos = repos)
 \dontrun{
    neuro_install("cifti", type = "source", lib = tlib)
    neuro_install("cifti",
