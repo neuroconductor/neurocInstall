@@ -1,0 +1,6 @@
+pandoc: 2.9.1.1
+pkgdown: 1.4.0
+pkgdown_sha: ~
+articles:
+  Installing_Packages_from_Neuroconductor: Installing_Packages_from_Neuroconductor.html
+
