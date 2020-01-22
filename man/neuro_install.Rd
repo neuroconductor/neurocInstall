@@ -24,7 +24,7 @@ neurocLite(...)
 
 \item{release}{Stable or current (development) versions/branches}
 
-\item{release_repo}{Repo for release repository, passed to
+\item{release_repo}{Repository for release repository, passed to
 \code{\link{install.packages}}.  If \code{release_repo = "github"},
 then it will install using GitHub.  If you set this using
 \code{\link{make_release_version}} or specify the URL directly,

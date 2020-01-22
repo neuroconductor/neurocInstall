@@ -43,7 +43,7 @@ source("https://neuroconductor.org/neurocLite.R")
 neuro_install("neurocInstall")
 ```
 
-After installation, you can use `neurocInstall::neuroc_install()` to install packages without source-ing the URL above.
+After installation, you can use `neurocInstall::neuroc_install()` to install packages without having to source the URL above.
 
 ## Installing Neuroconductor Packages without upgrading dependencies
 

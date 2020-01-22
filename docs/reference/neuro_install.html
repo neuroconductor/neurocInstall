@@ -124,7 +124,7 @@
     <pre class="usage"><span class='fu'>neuro_install</span>(
   <span class='no'>repo</span>,
   <span class='kw'>release</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"stable"</span>, <span class='st'>"current"</span>),
-  <span class='kw'>release_repo</span> <span class='kw'>=</span> <span class='fu'><a href='latest_neuroc_release.html'>latest_neuroc_release</a></span>(),
+  <span class='kw'>release_repo</span> <span class='kw'>=</span> <span class='fu'>latest_neuroc_release</span>(),
   <span class='kw'>upgrade_dependencies</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"pkgType"</span>),
   <span class='no'>...</span>
@@ -147,10 +147,10 @@
     </tr>
     <tr>
       <th>release_repo</th>
-      <td><p>Repo for release repository, passed to
+      <td><p>Repository for release repository, passed to
 <code><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></code>.  If <code>release_repo = "github"</code>,
 then it will install using GitHub.  If you set this using
-<code><a href='latest_neuroc_release.html'>make_release_version</a></code> or specify the URL directly,
+<code>make_release_version</code> or specify the URL directly,
 it will override <code>release</code> option.</p></td>
     </tr>
     <tr>
@@ -191,10 +191,10 @@ or <code><a href='https://rdrr.io/pkg/devtools/man/remote-reexports.html'>instal
    <span class='fu'>neuro_install</span>(<span class='st'>"cifti"</span>, <span class='kw'>lib</span> <span class='kw'>=</span> <span class='no'>tlib</span>,
    <span class='kw'>release_repo</span> <span class='kw'>=</span> <span class='st'>"https://neuroconductor.org/releases/2019/12"</span>)</div><div class='output co'>#&gt; 
 #&gt; The downloaded binary packages are in
-#&gt; 	/var/folders/1s/wrtqcpxn685_zk570bnx9_rr0000gr/T//RtmpMGz4pU/downloaded_packages</div><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+#&gt; 	/var/folders/1s/wrtqcpxn685_zk570bnx9_rr0000gr/T//Rtmprk1iqW/downloaded_packages</div><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
    <span class='fu'>neuro_install</span>(<span class='st'>"cifti"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"source"</span>, <span class='kw'>lib</span> <span class='kw'>=</span> <span class='no'>tlib</span>)
    <span class='fu'>neuro_install</span>(<span class='st'>"cifti"</span>,
-   <span class='kw'>release_repo</span> <span class='kw'>=</span> <span class='fu'><a href='latest_neuroc_release.html'>latest_neuroc_release</a></span>(<span class='st'>"stable"</span>),
+   <span class='kw'>release_repo</span> <span class='kw'>=</span> <span class='fu'>latest_neuroc_release</span>(<span class='st'>"stable"</span>),
    <span class='kw'>lib</span> <span class='kw'>=</span> <span class='no'>tlib</span>)
 
    <span class='fu'>neuro_install</span>(<span class='st'>"cifti"</span>, <span class='kw'>release_repo</span> <span class='kw'>=</span> <span class='st'>"github"</span>)

@@ -2,7 +2,7 @@
 #'
 #' @param secure Should https vs. http be used
 #' @param release Stable or current (development) versions
-#' @return URL fo release page
+#' @return URL of release page
 #' @export
 #'
 #' @examples

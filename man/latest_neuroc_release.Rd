@@ -24,7 +24,7 @@ release_versions(secure = TRUE)
 \url{https://neuroconductor.org/releases/}}
 }
 \value{
-URL fo release page
+URL of release page
 }
 \description{
 Latest Neuroconductor Release Location
