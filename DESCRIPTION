@@ -4,7 +4,7 @@ Title: 'Neuroconductor' Installer
 Version: 0.12.0
 Author: John Muschelli <muschellij2@gmail.com>
 Maintainer: John Muschelli <muschellij2@gmail.com>
-Description: Installs 'neuroconductor' packages from GitHub repository.
+Description: Installs 'Neuroconductor' packages from the release repository <https://neuroconductor.org/releases/> or from 'GitHub'.
 Imports:
     devtools (>= 1.12.0.9000),
     utils,
