@@ -1,20 +1,20 @@
-## ---- eval = FALSE-------------------------------------------------------
+## ---- eval = FALSE------------------------------------------------------------
 #  ## try http:// if https:// URLs are supported
 #  source("https://neuroconductor.org/neurocLite.R")
 #  neuro_install("PACKAGE")
 
-## ----eval = FALSE--------------------------------------------------------
+## ----eval = FALSE-------------------------------------------------------------
 #  source("https://neuroconductor.org/neurocLite.R")
 #  neuro_install(c("fslr", "neurohcp"))
 
-## ----eval = FALSE--------------------------------------------------------
+## ----eval = FALSE-------------------------------------------------------------
 #  source("https://neuroconductor.org/neurocLite.R")
 #  neurocLite(c("fslr", "neurohcp"))
 
-## ----eval = FALSE--------------------------------------------------------
+## ----eval = FALSE-------------------------------------------------------------
 #  source("https://neuroconductor.org/neurocLite.R")
 #  neuro_install("neurocInstall")
 
-## ---- eval = FALSE-------------------------------------------------------
+## ---- eval = FALSE------------------------------------------------------------
 #  neurocLite(c("fslr", "neurohcp"), upgrade_dependencies = FALSE)
 

@@ -7,7 +7,9 @@
 #'
 #' @examples
 #' latest_neuroc_release()
-#' make_release_version("2018/feb/")
+#' \dontrun{
+#' make_release_version("2018/02/")
+#' }
 latest_neuroc_release = function(secure = TRUE) {
   make_release_version(
     release_path = NULL,
@@ -72,6 +74,8 @@ release_versions = function(secure = TRUE) {
     }
   }
   releases = readLines(destfile, warn = FALSE)
+  releases = trimws(releases)
+  releases = gsub('"', "", releases)
   releases = releases[grepl("releases/", releases)]
   releases = gsub('"', "", releases)
   releases = trimws(releases)
@@ -85,7 +89,7 @@ release_versions = function(secure = TRUE) {
   df = df[ df$year != "latest", , drop = FALSE]
   df$year = as.numeric(df$year)
   df$date = paste0(df$year, "-", df$month, "-01")
-  df$date = as.Date(x = df$date, format = "%Y-%b-%d")
+  df$date = as.Date(x = df$date, format = "%Y-%m-%d")
   df = df[ order(df$date, decreasing = TRUE), , drop = FALSE]
   return(df)
 }
