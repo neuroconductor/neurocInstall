@@ -50,6 +50,9 @@ Result from  \code{\link{install.packages}} or
 Install function for neuroconductor packages
 }
 \examples{
+  sys_info = Sys.info()
+  os = tolower(sys_info[["sysname"]])
+  if (!any(os \%in\% "linux")) {
    repos = getOption("repos")
    print(repos)
    #if (repos["CRAN"] == "@CRAN@") {
@@ -63,6 +66,7 @@ Install function for neuroconductor packages
    neuro_install("oro.asl", lib = tlib,
    release_repo = "https://neuroconductor.org/releases/2019/12")
    options(repos = repos)
+   }
 \dontrun{
    neuro_install("cifti", type = "source", lib = tlib)
    neuro_install("cifti",
