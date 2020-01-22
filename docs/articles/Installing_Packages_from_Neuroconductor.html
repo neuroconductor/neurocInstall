@@ -58,6 +58,9 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right"></ul>
 </div>
@@ -91,31 +94,31 @@
 <p>Then, you can install a package using the following command:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">## try http:// if https:// URLs are supported</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span>(<span class="st">"https://neuroconductor.org/neurocLite.R"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">neuro_install</span>(<span class="st">"PACKAGE"</span>)</span></code></pre></div>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="kw"><a href="../reference/neuro_install.html">neuro_install</a></span>(<span class="st">"PACKAGE"</span>)</span></code></pre></div>
 <p>where <code>PACKAGE</code> is the name of the package you’d like to install, such as <code>fslr</code>. For example, if we want to install <code>neurohcp</code> and <code>fslr</code> we can run:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span>(<span class="st">"https://neuroconductor.org/neurocLite.R"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="kw">neuro_install</span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"fslr"</span>, <span class="st">"neurohcp"</span>))</span></code></pre></div>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="kw"><a href="../reference/neuro_install.html">neuro_install</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"fslr"</span>, <span class="st">"neurohcp"</span>))</span></code></pre></div>
 <div id="neuroclite-an-alias-for-neuroc_install" class="section level3">
 <h3 class="hasAnchor">
 <a href="#neuroclite-an-alias-for-neuroc_install" class="anchor"></a><code>neurocLite</code>: an alias for <code>neuroc_install</code>
 </h3>
 <p>As Bioconductor uses the <code>biocLite</code> function to install packages, we have created a duplicate of <code>neuro_install</code>, called <code>neurocLite</code>, for ease of use for those users accustomed to Bioconductor. The same command could have been executed as follows:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span>(<span class="st">"https://neuroconductor.org/neurocLite.R"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="kw">neurocLite</span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"fslr"</span>, <span class="st">"neurohcp"</span>))</span></code></pre></div>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="kw"><a href="../reference/neuro_install.html">neurocLite</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"fslr"</span>, <span class="st">"neurohcp"</span>))</span></code></pre></div>
 </div>
 <div id="installing-the-neurocinstall-package" class="section level3">
 <h3 class="hasAnchor">
 <a href="#installing-the-neurocinstall-package" class="anchor"></a>Installing the <code>neurocInstall</code> package</h3>
 <p>The <code>neurocInstall</code> package contains the <code>neurocLite</code>/<code>neuro_install</code> functions, as well as others relevant for Neuroconductor. You can install the package as follows:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span>(<span class="st">"https://neuroconductor.org/neurocLite.R"</span>)</span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="kw">neuro_install</span>(<span class="st">"neurocInstall"</span>)</span></code></pre></div>
-<p>After installation, you can use <code>neurocInstall::neuroc_install()</code> to install packages without having to source the URL above.</p>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="kw"><a href="../reference/neuro_install.html">neuro_install</a></span>(<span class="st">"neurocInstall"</span>)</span></code></pre></div>
+<p>After installation, you can use <code><a href="../reference/neuro_install.html">neurocInstall::neuroc_install()</a></code> to install packages without having to source the URL above.</p>
 </div>
 <div id="installing-neuroconductor-packages-without-upgrading-dependencies" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installing-neuroconductor-packages-without-upgrading-dependencies" class="anchor"></a>Installing Neuroconductor Packages without upgrading dependencies</h2>
 <p>The <code>neurocLite</code>/<code>neuro_install</code> functions depend on <code><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">devtools::install_github</a></code>, which will upgrade dependencies by default, which is recommended. If you would like to install a package, but not upgrade the dependencies (missing dependencies will still be installed), you can set the <code>upgrade_dependencies</code> argument to <code>FALSE</code>:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">neurocLite</span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"fslr"</span>, <span class="st">"neurohcp"</span>), <span class="dt">upgrade_dependencies =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw"><a href="../reference/neuro_install.html">neurocLite</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"fslr"</span>, <span class="st">"neurohcp"</span>), <span class="dt">upgrade_dependencies =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="installing-and-starting-r" class="section level1">

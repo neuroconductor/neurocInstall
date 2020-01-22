@@ -37,7 +37,7 @@
 #'    print(getOption("repos"))
 #'    tlib = tempfile()
 #'    dir.create(tlib, showWarnings = FALSE)
-#'    neuro_install("cifti", lib = tlib,
+#'    neuro_install("oro.asl", lib = tlib,
 #'    release_repo = "https://neuroconductor.org/releases/2019/12")
 #' \dontrun{
 #'    neuro_install("cifti", type = "source", lib = tlib)
@@ -78,17 +78,25 @@ neuro_install = function(
     if ("contriburl" %in% names(args)) {
       args$contriburl = c(contriburl, args$contriburl)
     }
+    repos = repos[!duplicated(repos)]
+    args$contriburl = unique(args$contriburl)
     args$pkgs = repo
-    args$repos = repos
+    # args$repos = repos
     args$type = type
-    x = do.call(install.packages, args = args)
+    x = do.call(utils::install.packages, args = args)
     # x = install.packages(pkgs = repo,
     #                      repos = c(Neuroconductor = release_repo,
     #                                getOption("repos")),
     #                      type = type,
     #
     #                      ...)
-    not_installed = repo[!repo %in% installed.packages()[, "Package"]]
+    lib.loc = NULL
+    if (!is.null(args$lib)) {
+      lib.loc = args$lib
+    }
+    not_installed = repo[!repo %in% installed.packages(
+      lib.loc = lib.loc
+    )[, "Package"]]
     if (length(not_installed) > 0) {
       msg = paste0("Package(s): ", paste(not_installed, sep = ", "),
                    " released binaries/sources were not installed,",
