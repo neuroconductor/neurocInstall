@@ -22,6 +22,9 @@ release_versions(secure = TRUE)
 
 \item{release_path}{path to the release on
 \url{https://neuroconductor.org/releases/}}
+
+\item{check}{should the `release_path` need to be checked against
+all the releases?}
 }
 \value{
 URL of release page

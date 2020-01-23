@@ -30,6 +30,8 @@ binary_release_repo = function(
 #' @rdname latest_neuroc_release
 #' @param release_path path to the release on
 #' \url{https://neuroconductor.org/releases/}
+#' @param check should the `release_path` need to be checked against
+#' all the releases?
 #' @export
 make_release_version = function(release_path = NULL, secure = TRUE,
                                 check = TRUE) {
