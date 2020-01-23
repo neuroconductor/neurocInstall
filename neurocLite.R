@@ -50,7 +50,7 @@ message(paste("Using neurocLite version:", pkg_ver))
 	#' @description Install function for neuroconductor packages
 	#' @param repo Package name in neuroconductor
 	#' @param release Stable or current (development) versions/branches
-	#' @param release_repo Repo for release repository, passed to
+	#' @param release_repo Repository for release repository, passed to
 	#' \code{\link{install.packages}}.  If \code{release_repo = "github"},
 	#' then it will install using GitHub.  If you set this using
 	#' \code{\link{make_release_version}} or specify the URL directly,
@@ -76,16 +76,26 @@ message(paste("Using neurocLite version:", pkg_ver))
 	#' @importFrom utils compareVersion install.packages installed.packages
 	#'
 	#' @examples
-	#'    repos = getOption("repos")
-	#'    print(repos)
-	#'    if (repos["CRAN"] == "@CRAN@") {
-	#'        repos["CRAN"] = "https://cloud.r-project.org"
-	#'        options(repos = repos)
-	#'    }
-	#'    print(getOption("repos"))
+	#' \donttest{
 	#'    tlib = tempfile()
 	#'    dir.create(tlib, showWarnings = FALSE)
-	#'    neuro_install("cifti", lib = tlib)
+	#'    system.time({
+	#'    install.packages("oro.asl",
+	#'    lib = tlib,
+	#'    repos = "https://neuroconductor.org/releases/2019/12/")
+	#'    })
+	#'    repos = getOption("repos")
+	#'    print(repos)
+	#'    #if (repos["CRAN"] == "@CRAN@") {
+	#'    #    repos["CRAN"] = "https://cloud.r-project.org"
+	#'    #    options(repos = repos)
+	#'    #}
+	#'    options(repos = NULL)
+	#'    print(getOption("repos"))
+	#'    neuro_install("oro.asl", lib = tlib,
+	#'    release_repo = "https://neuroconductor.org/releases/2019/12")
+	#'    options(repos = repos)
+	#'  }
 	#' \dontrun{
 	#'    neuro_install("cifti", type = "source", lib = tlib)
 	#'    neuro_install("cifti",
@@ -125,17 +135,25 @@ message(paste("Using neurocLite version:", pkg_ver))
 	    if ("contriburl" %in% names(args)) {
 	      args$contriburl = c(contriburl, args$contriburl)
 	    }
+	    repos = repos[!duplicated(repos)]
+	    args$contriburl = unique(args$contriburl)
 	    args$pkgs = repo
-	    args$repos = repos
+	    # args$repos = repos
 	    args$type = type
-	    x = do.call(install.packages, args = args)
+	    x = do.call(utils::install.packages, args = args)
 	    # x = install.packages(pkgs = repo,
 	    #                      repos = c(Neuroconductor = release_repo,
 	    #                                getOption("repos")),
 	    #                      type = type,
 	    #
 	    #                      ...)
-	    not_installed = repo[!repo %in% installed.packages()[, "Package"]]
+	    lib.loc = NULL
+	    if (!is.null(args$lib)) {
+	      lib.loc = args$lib
+	    }
+	    not_installed = repo[!repo %in% installed.packages(
+	      lib.loc = lib.loc
+	    )[, "Package"]]
 	    if (length(not_installed) > 0) {
 	      msg = paste0("Package(s): ", paste(not_installed, sep = ", "),
 	                   " released binaries/sources were not installed,",
@@ -253,12 +271,14 @@ message(paste("Using neurocLite version:", pkg_ver))
 	#'
 	#' @param secure Should https vs. http be used
 	#' @param release Stable or current (development) versions
-	#' @return URL fo release page
+	#' @return URL of release page
 	#' @export
 	#'
 	#' @examples
+	#' make_release_version("2018/02/", check = FALSE)
+	#' \donttest{
 	#' latest_neuroc_release()
-	#' make_release_version("2018/feb/")
+	#' }
 	latest_neuroc_release = function(secure = TRUE) {
 	  make_release_version(
 	    release_path = NULL,
@@ -280,15 +300,21 @@ message(paste("Using neurocLite version:", pkg_ver))
 	#' @param release_path path to the release on
 	#' \url{https://neuroconductor.org/releases/}
 	#' @export
-	make_release_version = function(release_path = NULL, secure = TRUE) {
-	  df = release_versions()
-	
+	make_release_version = function(release_path = NULL, secure = TRUE,
+	                                check = TRUE) {
 	  if (is.null(release_path)) {
-	    release_path = df$release[1]
+	    check = TRUE
 	  }
-	  if (!all(release_path %in% df$release)) {
-	    warning(paste0("Release path created, but not in the ",
-	                   "Neuroconductor set of releases"))
+	  if (check) {
+	    df = release_versions()
+	
+	    if (is.null(release_path)) {
+	      release_path = df$release[1]
+	    }
+	    if (!all(release_path %in% df$release)) {
+	      warning(paste0("Release path created, but not in the ",
+	                     "Neuroconductor set of releases"))
+	    }
 	  }
 	  release_path = paste0(
 	    "http", ifelse(secure, "s", ""), "://neuroconductor.org/releases/",
@@ -317,12 +343,14 @@ message(paste("Using neurocLite version:", pkg_ver))
 	    if (requireNamespace("httr", quietly = TRUE)) {
 	      url = sub("https", "http", url)
 	      res = httr::GET(url,
-	                httr::write_disk(path = destfile, overwrite = TRUE),
-	                config = httr::config(ssl_verifypeer = FALSE))
+	                      httr::write_disk(path = destfile, overwrite = TRUE),
+	                      config = httr::config(ssl_verifypeer = FALSE))
 	      httr::warn_for_status(res)
 	    }
 	  }
 	  releases = readLines(destfile, warn = FALSE)
+	  releases = trimws(releases)
+	  releases = gsub('"', "", releases)
 	  releases = releases[grepl("releases/", releases)]
 	  releases = gsub('"', "", releases)
 	  releases = trimws(releases)
@@ -336,7 +364,7 @@ message(paste("Using neurocLite version:", pkg_ver))
 	  df = df[ df$year != "latest", , drop = FALSE]
 	  df$year = as.numeric(df$year)
 	  df$date = paste0(df$year, "-", df$month, "-01")
-	  df$date = as.Date(x = df$date, format = "%Y-%b-%d")
+	  df$date = as.Date(x = df$date, format = "%Y-%m-%d")
 	  df = df[ order(df$date, decreasing = TRUE), , drop = FALSE]
 	  return(df)
 	}

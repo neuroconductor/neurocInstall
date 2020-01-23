@@ -11,7 +11,7 @@ latest_neuroc_release(secure = TRUE)
 
 binary_release_repo(release = c("stable", "current"), secure = TRUE)
 
-make_release_version(release_path = NULL, secure = TRUE)
+make_release_version(release_path = NULL, secure = TRUE, check = TRUE)
 
 release_versions(secure = TRUE)
 }
@@ -30,8 +30,8 @@ URL of release page
 Latest Neuroconductor Release Location
 }
 \examples{
+make_release_version("2018/02/", check = FALSE)
+\donttest{
 latest_neuroc_release()
-\dontrun{
-make_release_version("2018/02/")
 }
 }

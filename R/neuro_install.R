@@ -28,7 +28,7 @@
 #' @importFrom utils compareVersion install.packages installed.packages
 #'
 #' @examples
-#' if (identical(tolower(Sys.getenv("NOT_CRAN")), "true")) {
+#' \donttest{
 #'    tlib = tempfile()
 #'    dir.create(tlib, showWarnings = FALSE)
 #'    system.time({

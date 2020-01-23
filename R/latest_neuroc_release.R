@@ -6,9 +6,9 @@
 #' @export
 #'
 #' @examples
+#' make_release_version("2018/02/", check = FALSE)
+#' \donttest{
 #' latest_neuroc_release()
-#' \dontrun{
-#' make_release_version("2018/02/")
 #' }
 latest_neuroc_release = function(secure = TRUE) {
   make_release_version(
@@ -31,15 +31,21 @@ binary_release_repo = function(
 #' @param release_path path to the release on
 #' \url{https://neuroconductor.org/releases/}
 #' @export
-make_release_version = function(release_path = NULL, secure = TRUE) {
-  df = release_versions()
-
+make_release_version = function(release_path = NULL, secure = TRUE,
+                                check = TRUE) {
   if (is.null(release_path)) {
-    release_path = df$release[1]
+    check = TRUE
   }
-  if (!all(release_path %in% df$release)) {
-    warning(paste0("Release path created, but not in the ",
-                   "Neuroconductor set of releases"))
+  if (check) {
+    df = release_versions()
+
+    if (is.null(release_path)) {
+      release_path = df$release[1]
+    }
+    if (!all(release_path %in% df$release)) {
+      warning(paste0("Release path created, but not in the ",
+                     "Neuroconductor set of releases"))
+    }
   }
   release_path = paste0(
     "http", ifelse(secure, "s", ""), "://neuroconductor.org/releases/",
@@ -68,8 +74,8 @@ release_versions = function(secure = TRUE) {
     if (requireNamespace("httr", quietly = TRUE)) {
       url = sub("https", "http", url)
       res = httr::GET(url,
-                httr::write_disk(path = destfile, overwrite = TRUE),
-                config = httr::config(ssl_verifypeer = FALSE))
+                      httr::write_disk(path = destfile, overwrite = TRUE),
+                      config = httr::config(ssl_verifypeer = FALSE))
       httr::warn_for_status(res)
     }
   }

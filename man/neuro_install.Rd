@@ -50,7 +50,7 @@ Result from  \code{\link{install.packages}} or
 Install function for neuroconductor packages
 }
 \examples{
-if (identical(tolower(Sys.getenv("NOT_CRAN")), "true")) {
+\donttest{
    tlib = tempfile()
    dir.create(tlib, showWarnings = FALSE)
    system.time({
