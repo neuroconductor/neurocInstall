@@ -10,4 +10,5 @@
 * This is a new release.
 
 --- 
-Added \donttest as Uwe stated "web access timing vary drastically."
+Added \donttest as Uwe stated "web access timing vary drastically."  Missed
+a \dontrun in there - it was removed.

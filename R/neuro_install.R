@@ -48,7 +48,7 @@
 #'    release_repo = "https://neuroconductor.org/releases/2019/12")
 #'    options(repos = repos)
 #'  }
-#' \dontrun{
+#' \donttest{
 #'    neuro_install("cifti", type = "source", lib = tlib)
 #'    neuro_install("cifti",
 #'    release_repo = latest_neuroc_release("stable"),
