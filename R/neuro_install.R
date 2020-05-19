@@ -34,7 +34,8 @@
 #'    system.time({
 #'    install.packages("oro.asl",
 #'    lib = tlib,
-#'    repos = "https://neuroconductor.org/releases/2019/12/")
+#'    repos = "https://neuroconductor.org/releases/2019/12/",
+#'    verbose = TRUE)
 #'    })
 #'    repos = getOption("repos")
 #'    print(repos)
@@ -49,9 +50,10 @@
 #'    options(repos = repos)
 #'  }
 #' \donttest{
-#'    neuro_install("cifti", type = "source", lib = tlib)
+#'    options(repos = "http://cran.r-project.org")
+#'    neuro_install("cifti", type = "source", lib = tlib, verbose = TRUE)
 #'    neuro_install("cifti",
-#'    release_repo = latest_neuroc_release("stable"),
+#'    release_repo = latest_neuroc_release(),
 #'    lib = tlib)
 #'
 #'    neuro_install("cifti", release_repo = "github")

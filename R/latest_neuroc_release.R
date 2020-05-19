@@ -11,6 +11,9 @@
 #' latest_neuroc_release()
 #' }
 latest_neuroc_release = function(secure = TRUE) {
+  if (is.null(secure)) {
+    secure = TRUE
+  }
   make_release_version(
     release_path = NULL,
     secure = secure)
