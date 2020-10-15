@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -37,7 +41,6 @@
 
 <meta property="og:title" content="Neuroconductor Installer — neuro_install" />
 <meta property="og:description" content="Install function for neuroconductor packages" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -55,7 +58,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -69,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">neurocInstall</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.12.1</span>
       </span>
     </div>
 
@@ -159,7 +162,7 @@ it will override <code>release</code> option.</p></td>
     <tr>
       <th>upgrade_dependencies</th>
       <td><p>Should dependencies be updated?
-passed to <code><a href='https://rdrr.io/pkg/devtools/man/install.html'>install</a></code> if using
+passed to <code><a href='https://devtools.r-lib.org//reference/install.html'>install</a></code> if using
 <code>release_repo = "github"</code></p></td>
     </tr>
     <tr>
@@ -171,7 +174,7 @@ install, passed to <code><a href='https://rdrr.io/r/utils/install.packages.html'
       <th>...</th>
       <td><p>additional arguments passed to
 <code><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></code>
-or <code><a href='https://rdrr.io/pkg/devtools/man/remote-reexports.html'>install_github</a></code> if
+or <code><a href='https://devtools.r-lib.org//reference/remote-reexports.html'>install_github</a></code> if
 <code>release_repo = "github"</code></p></td>
     </tr>
     </table>
@@ -179,7 +182,7 @@ or <code><a href='https://rdrr.io/pkg/devtools/man/remote-reexports.html'>instal
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Result from  <code><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></code> or
-<code><a href='https://rdrr.io/pkg/devtools/man/remote-reexports.html'>install_github</a></code></p>
+<code><a href='https://devtools.r-lib.org//reference/remote-reexports.html'>install_github</a></code></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
@@ -188,11 +191,12 @@ or <code><a href='https://rdrr.io/pkg/devtools/man/remote-reexports.html'>instal
    <span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span>({
    <span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span>(<span class='st'>"oro.asl"</span>,
    <span class='kw'>lib</span> <span class='kw'>=</span> <span class='no'>tlib</span>,
-   <span class='kw'>repos</span> <span class='kw'>=</span> <span class='st'>"https://neuroconductor.org/releases/2019/12/"</span>)
+   <span class='kw'>repos</span> <span class='kw'>=</span> <span class='st'>"https://neuroconductor.org/releases/2019/12/"</span>,
+   <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
    })</div><div class='output co'>#&gt; 
 #&gt; The downloaded binary packages are in
-#&gt; 	/var/folders/1s/wrtqcpxn685_zk570bnx9_rr0000gr/T//RtmpvOUk7T/downloaded_packages</div><div class='output co'>#&gt;    user  system elapsed 
-#&gt;   0.070   0.022   1.063 </div><div class='input'>   <span class='no'>repos</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"repos"</span>)
+#&gt; 	/var/folders/1s/wrtqcpxn685_zk570bnx9_rr0000gr/T//RtmpB84aun/downloaded_packages</div><div class='output co'>#&gt;    user  system elapsed 
+#&gt;   0.066   0.023   1.264 </div><div class='input'>   <span class='no'>repos</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"repos"</span>)
    <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>repos</span>)</div><div class='output co'>#&gt;                          CRAN 
 #&gt; "https://cloud.r-project.org" </div><div class='input'>   <span class='co'>#if (repos["CRAN"] == "@CRAN@") {</span>
    <span class='co'>#    repos["CRAN"] = "https://cloud.r-project.org"</span>
@@ -202,38 +206,32 @@ or <code><a href='https://rdrr.io/pkg/devtools/man/remote-reexports.html'>instal
    <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"repos"</span>))</div><div class='output co'>#&gt; NULL</div><div class='input'>   <span class='fu'>neuro_install</span>(<span class='st'>"oro.asl"</span>, <span class='kw'>lib</span> <span class='kw'>=</span> <span class='no'>tlib</span>,
    <span class='kw'>release_repo</span> <span class='kw'>=</span> <span class='st'>"https://neuroconductor.org/releases/2019/12"</span>)</div><div class='output co'>#&gt; 
 #&gt; The downloaded binary packages are in
-#&gt; 	/var/folders/1s/wrtqcpxn685_zk570bnx9_rr0000gr/T//RtmpvOUk7T/downloaded_packages</div><div class='input'>   <span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span>(<span class='kw'>repos</span> <span class='kw'>=</span> <span class='no'>repos</span>)
+#&gt; 	/var/folders/1s/wrtqcpxn685_zk570bnx9_rr0000gr/T//RtmpB84aun/downloaded_packages</div><div class='input'>   <span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span>(<span class='kw'>repos</span> <span class='kw'>=</span> <span class='no'>repos</span>)
  <span class='co'># }</span>
 <span class='co'># \donttest{</span>
-   <span class='fu'>neuro_install</span>(<span class='st'>"cifti"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"source"</span>, <span class='kw'>lib</span> <span class='kw'>=</span> <span class='no'>tlib</span>)
-   <span class='fu'>neuro_install</span>(<span class='st'>"cifti"</span>,
-   <span class='kw'>release_repo</span> <span class='kw'>=</span> <span class='fu'><a href='latest_neuroc_release.html'>latest_neuroc_release</a></span>(<span class='st'>"stable"</span>),
-   <span class='kw'>lib</span> <span class='kw'>=</span> <span class='no'>tlib</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: unable to access index for repository httpNA://neuroconductor.org/releases/2019/12/src/contrib:</span>
-#&gt; <span class='warning'>  cannot open URL 'httpNA://neuroconductor.org/releases/2019/12/src/contrib/PACKAGES'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: unable to access index for repository httpNA://neuroconductor.org/releases/2019/12/bin/macosx/el-capitan/contrib/3.6:</span>
-#&gt; <span class='warning'>  cannot open URL 'httpNA://neuroconductor.org/releases/2019/12/bin/macosx/el-capitan/contrib/3.6/PACKAGES'</span></div><div class='output co'>#&gt; 
+   <span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span>(<span class='kw'>repos</span> <span class='kw'>=</span> <span class='st'>"http://cran.r-project.org"</span>)
+   <span class='fu'>neuro_install</span>(<span class='st'>"cifti"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"source"</span>, <span class='kw'>lib</span> <span class='kw'>=</span> <span class='no'>tlib</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>system (cmd0): /Library/Frameworks/R.framework/Resources/bin/R CMD INSTALL</span></div><div class='output co'>#&gt; <span class='message'>foundpkgs: cifti, /var/folders/1s/wrtqcpxn685_zk570bnx9_rr0000gr/T//RtmpB84aun/downloaded_packages/cifti_0.4.6.0.tar.gz</span></div><div class='output co'>#&gt; <span class='message'>files: /var/folders/1s/wrtqcpxn685_zk570bnx9_rr0000gr/T//RtmpB84aun/downloaded_packages/cifti_0.4.6.0.tar.gz</span></div><div class='output co'>#&gt; <span class='message'>1): succeeded '/Library/Frameworks/R.framework/Resources/bin/R CMD INSTALL -l '/private/var/folders/1s/wrtqcpxn685_zk570bnx9_rr0000gr/T/RtmpB84aun/filedf604786258' '/var/folders/1s/wrtqcpxn685_zk570bnx9_rr0000gr/T//RtmpB84aun/downloaded_packages/cifti_0.4.6.0.tar.gz''</span></div><div class='input'>   <span class='fu'>neuro_install</span>(<span class='st'>"cifti"</span>,
+   <span class='kw'>release_repo</span> <span class='kw'>=</span> <span class='fu'><a href='latest_neuroc_release.html'>latest_neuroc_release</a></span>(),
+   <span class='kw'>lib</span> <span class='kw'>=</span> <span class='no'>tlib</span>)</div><div class='output co'>#&gt; 
 #&gt; The downloaded binary packages are in
-#&gt; 	/var/folders/1s/wrtqcpxn685_zk570bnx9_rr0000gr/T//RtmpvOUk7T/downloaded_packages</div><div class='input'>
-   <span class='fu'>neuro_install</span>(<span class='st'>"cifti"</span>, <span class='kw'>release_repo</span> <span class='kw'>=</span> <span class='st'>"github"</span>)</div><div class='output co'>#&gt; <span class='message'>Downloading GitHub repo neuroconductor/cifti@3ddbf418bda01dfc70a6e8afdbd406a889cc62eb</span></div><div class='output co'>#&gt;      checking for file ‘/private/var/folders/1s/wrtqcpxn685_zk570bnx9_rr0000gr/T/RtmpvOUk7T/remotes355a2c05af0e/neuroconductor-cifti-3ddbf41/DESCRIPTION’ ...  <span style='color: #00BB00;'>✔</span><span>  </span><span style='color: #555555;'>checking for file ‘/private/var/folders/1s/wrtqcpxn685_zk570bnx9_rr0000gr/T/RtmpvOUk7T/remotes355a2c05af0e/neuroconductor-cifti-3ddbf41/DESCRIPTION’</span><span>
-#&gt;   </span><span style='color: #555555;'>─  preparing ‘cifti’:</span><span style='color: #00BBBB;'> (345ms)</span><span>
+#&gt; 	/var/folders/1s/wrtqcpxn685_zk570bnx9_rr0000gr/T//RtmpB84aun/downloaded_packages</div><div class='input'>
+   <span class='fu'>neuro_install</span>(<span class='st'>"cifti"</span>, <span class='kw'>release_repo</span> <span class='kw'>=</span> <span class='st'>"github"</span>)</div><div class='output co'>#&gt; <span class='message'>Using github PAT from envvar GITHUB_PAT</span></div><div class='output co'>#&gt; <span class='message'>Downloading GitHub repo neuroconductor/cifti@dd98b8c27731fb1e62235827cd6771d2923adcab</span></div><div class='output co'>#&gt;      checking for file ‘/private/var/folders/1s/wrtqcpxn685_zk570bnx9_rr0000gr/T/RtmpB84aun/remotesdf6080da08d/neuroconductor-cifti-dd98b8c/DESCRIPTION’ ...  <span style='color: #00BB00;'>✔</span><span>  </span><span style='color: #555555;'>checking for file ‘/private/var/folders/1s/wrtqcpxn685_zk570bnx9_rr0000gr/T/RtmpB84aun/remotesdf6080da08d/neuroconductor-cifti-dd98b8c/DESCRIPTION’</span><span>
+#&gt;   </span><span style='color: #555555;'>─  preparing ‘cifti’:</span><span>
 #&gt;      checking DESCRIPTION meta-information ...  </span><span style='color: #00BB00;'>✔</span><span>  </span><span style='color: #555555;'>checking DESCRIPTION meta-information</span><span>
 #&gt;   </span><span style='color: #555555;'>─  checking for LF line-endings in source and make files and shell scripts</span><span>
 #&gt;   </span><span style='color: #555555;'>─  checking for empty or unneeded directories</span><span>
 #&gt;    Removed empty directory ‘cifti/docs’
-#&gt;   </span><span style='color: #555555;'>─  building ‘cifti_0.4.6.0.tar.gz’</span><span>
+#&gt;   </span><span style='color: #555555;'>─  building ‘cifti_0.4.7.tar.gz’</span><span>
 #&gt;      
-#&gt; </div><div class='output co'>#&gt; <span class='message'>Installing package into ‘/private/var/folders/1s/wrtqcpxn685_zk570bnx9_rr0000gr/T/RtmpKGe6Nk/temp_libpath350a34724887’</span>
-#&gt; <span class='message'>(as ‘lib’ is unspecified)</span></div><div class='output co'>#&gt; <span class='message'>Adding ‘cifti_0.4.5.tgz’ to the cache</span></div><div class='output co'>#&gt; <span class='message'>Adding ‘cifti_0.4.6.0.tar.gz’ to the cache</span></div><div class='output co'>#&gt; <span class='message'>Adding ‘oro.asl_0.1.1.tgz’ to the cache</span></div><div class='output co'>#&gt; <span class='message'>Adding ‘cifti_0.4.6.0.tgz’ to the cache</span></div><div class='input'># }
+#&gt; </div><div class='output co'>#&gt; <span class='message'>Installing package into ‘/private/var/folders/1s/wrtqcpxn685_zk570bnx9_rr0000gr/T/RtmpqA9394/temp_libpathdf2f643510d6’</span>
+#&gt; <span class='message'>(as ‘lib’ is unspecified)</span></div><div class='input'># }
 
 </div></span></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -244,7 +242,7 @@ or <code><a href='https://rdrr.io/pkg/devtools/man/remote-reexports.html'>instal
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

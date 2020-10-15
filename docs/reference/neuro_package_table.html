@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -37,7 +41,6 @@
 
 <meta property="og:title" content="Neuroconductor Package Table — neuro_package_table" />
 <meta property="og:description" content="Returns the table of Neuroconductor packages" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -55,7 +58,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -69,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">neurocInstall</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.12.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.12.1</span>
       </span>
     </div>
 
@@ -156,313 +159,359 @@
 <a href='https://neuroconductor.org/neurocPackages'>https://neuroconductor.org/neurocPackages</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>neuro_package_table</span>()</div><div class='output co'>#&gt;                     repo version.stable neuroc_version.stable
-#&gt; 1                    aal          0.1.1                 0.1.1
-#&gt; 2                  afnir          0.4.6                 0.4.6
-#&gt; 3                  alvin          0.3.0                 0.3.0
-#&gt; 4                  ANTsR        0.5.4.2               0.5.4.2
-#&gt; 5              ANTsRCore          0.7.3                 0.7.3
-#&gt; 6                bftools          0.2.2                 0.2.2
-#&gt; 7              brainKCCA          0.1.0                 0.1.0
-#&gt; 8                 brainR        1.5.2.1               1.5.2.1
-#&gt; 9                    cap            1.0                   1.0
-#&gt; 10                  cfma            1.0                   1.0
-#&gt; 11                 cifti        0.4.6.0               0.4.6.0
-#&gt; 12              dcemriS4         0.57.1                0.57.1
-#&gt; 13              dcm2niir        0.6.9.1               0.6.9.1
-#&gt; 14               dcmsort          0.3.0                 0.3.0
-#&gt; 15                 dcmtk        0.6.8.1               0.6.8.1
-#&gt; 16           DensParcorr            1.0                   1.0
-#&gt; 17                divest          0.8.1                 0.8.1
-#&gt; 18                   dti          1.4.2                 1.4.2
-#&gt; 19              eegUtils     0.3.0.9000            0.3.0.9000
-#&gt; 20           EveTemplate          1.0.0                 1.0.0
-#&gt; 21             extrantsr       3.9.12.1              3.9.12.1
-#&gt; 22              flexconn        0.5.4.1               0.5.4.1
-#&gt; 23                  fmri          1.9.2                 1.9.2
-#&gt; 24                fmriqa          0.4.0                 0.4.0
-#&gt; 25            freesurfer          1.6.5                 1.6.5
-#&gt; 26                  fslr       2.24.2.1              2.24.2.1
-#&gt; 27           gganatogram          1.1.1                 1.1.1
-#&gt; 28               ggBrain            0.1                   0.1
-#&gt; 29               ggneuro          0.5.0                 0.5.0
-#&gt; 30                 ggseg          1.5.3                 1.5.3
-#&gt; 31            ggsegExtra            1.5                   1.5
-#&gt; 32                 gifti     0.7.5.9001            0.7.5.9001
-#&gt; 33                  I2C2          0.2.4                 0.2.4
-#&gt; 34                ichseg         0.17.1                0.17.1
-#&gt; 35                  ITKR        0.5.1.2               0.5.1.2
-#&gt; 36              itksnapr            2.1                   2.1
-#&gt; 37           kirby21.asl          1.7.0                 1.7.0
-#&gt; 38          kirby21.base          1.7.0                 1.7.0
-#&gt; 39          kirby21.det2          1.7.0                 1.7.0
-#&gt; 40           kirby21.dti          1.7.0                 1.7.0
-#&gt; 41         kirby21.flair          1.7.0                 1.7.0
-#&gt; 42          kirby21.fmri          1.7.0                 1.7.0
-#&gt; 43      kirby21.mricloud     0.0.0.9000            0.0.0.9000
-#&gt; 44            kirby21.mt          1.7.0                 1.7.0
-#&gt; 45          kirby21.smri            1.5                   1.5
-#&gt; 46            kirby21.t1          1.7.0                 1.7.0
-#&gt; 47            kirby21.t2          1.7.0                 1.7.0
-#&gt; 48          kirby21.vaso          1.7.0                 1.7.0
-#&gt; 49               LESYMAP     0.0.0.9221            0.0.0.9221
-#&gt; 50                 LINDA          0.5.1                 0.5.1
-#&gt; 51                lungct        0.7.6.1               0.7.6.1
-#&gt; 52        malf.templates          0.3.1                 0.3.1
-#&gt; 53                medals          0.3.0                 0.3.0
-#&gt; 54                mimosa          0.5.8                 0.5.8
-#&gt; 55                   mni          0.2.0                 0.2.0
-#&gt; 56           MNITemplate          1.0.0                 1.0.0
-#&gt; 57             MriCloudR          0.9.3                 0.9.3
-#&gt; 58 MRIcloudT1volumetrics          0.3.1                 0.3.1
-#&gt; 59                 msmri          0.3.1                 0.3.1
-#&gt; 60             neurobase         1.28.0                1.28.0
-#&gt; 61         neurocInstall         0.10.1                0.10.1
-#&gt; 62           neurocStats          0.1.2                 0.1.2
-#&gt; 63              neurohcp          0.8.1                 0.8.1
-#&gt; 64            neurovault          0.5.6                 0.5.6
-#&gt; 65            NiftiArray       0.99.6.1              0.99.6.1
-#&gt; 66              nitrcbot            1.2                   1.2
-#&gt; 67                  nsrr          0.1.3                 0.1.3
-#&gt; 68                 oasis          3.0.1                 3.0.1
-#&gt; 69               oro.asl          0.1.1                 0.1.1
-#&gt; 70             oro.dicom        0.5.2.2               0.5.2.2
-#&gt; 71             oro.nifti         0.10.1                0.10.1
-#&gt; 72               oro.pet          0.2.5                 0.2.5
-#&gt; 73                pain21          0.1.0                 0.1.0
-#&gt; 74               papayar            1.0                   1.0
-#&gt; 75          papayaWidget          0.6.0                 0.6.0
-#&gt; 76                   pbj          0.1.5                 0.1.5
-#&gt; 77               penn115          0.1.1                 0.1.1
-#&gt; 78              radtools        1.0.7.2               1.0.7.2
-#&gt; 79                 RAVEL          1.2.2                 1.2.2
-#&gt; 80             RAVELData         0.99.1                0.99.1
-#&gt; 81               rcamino          0.6.4                 0.6.4
-#&gt; 82                   RIA          1.4.2                 1.4.2
-#&gt; 83                RNifti         0.11.1                0.11.1
-#&gt; 84             RNiftyReg          2.6.7                 2.6.7
-#&gt; 85                 robex          1.2.6                 1.2.6
-#&gt; 86           ROpenCVLite        0.3.410               0.3.410
-#&gt; 87                rtapas          0.0.2                 0.0.2
-#&gt; 88               Rvision          0.3.5                 0.3.5
-#&gt; 89                 Rxnat          1.0.6                 1.0.6
-#&gt; 90          smri.process          0.8.4                 0.8.4
-#&gt; 91                 spant      0.16.9000             0.16.9000
-#&gt; 92                spm12r          2.8.1                 2.8.1
-#&gt; 93                 sri24          0.1.2                 0.1.2
-#&gt; 94               stapler        0.7.0.1               0.7.0.1
-#&gt; 95               sublime            1.3                   1.3
-#&gt; 96                 voxel          1.3.5                 1.3.5
-#&gt; 97              waveslim          1.8.0                 1.8.0
-#&gt; 98           WhiteStripe          2.3.2                 2.3.2
-#&gt;                            commit_id.stable version.current
-#&gt; 1  a2469954de51f20cca48c110d242546acbfda6fa           0.1.1
-#&gt; 2  99cc35431e6c9c77de9398d3b2d9480cb85c4575           0.4.6
-#&gt; 3  07457349f46d8fc5df39f74c16392f792c873bae           0.2.0
-#&gt; 4  fc731e1ad1ed0206049165ab72703f9b22d5b572         0.5.4.1
-#&gt; 5  44e8a86ab89ebbc53fa982d69a8d430f68acf72b         0.7.0.1
-#&gt; 6  b98076a4b140d12a13a0159d625537dbe4c6029b           0.2.2
-#&gt; 7  12e3d0f0c7a2041350c2196789af1077a80aa40a           0.1.0
-#&gt; 8  b6562e9139411c5bf9c53af09f1b133b71ef9716         1.5.2.1
-#&gt; 9  920234e09e295ca64817b0046d0241c68b473374             1.0
-#&gt; 10 eddbbbe8e634960a3f445380e8cba0eacc9e973e             1.0
-#&gt; 11 3ddbf418bda01dfc70a6e8afdbd406a889cc62eb         0.4.6.0
-#&gt; 12 a23cbcb93236cff7c75d62449552b86a5a151f18          0.57.1
-#&gt; 13 99438d63d8352019c06be2a750b3dc3c62d725a1         0.6.8.1
-#&gt; 14 8851d0ae583e5bbe808e4642090c389ba8a4dbe5           0.3.0
-#&gt; 15 7b0d0c7bbc62c0fdb5a3d13dc63ba7a88beb669c         0.6.8.1
-#&gt; 16 6787e6ef6ed40e4f1b0bec5f9e225d2866309705             1.0
-#&gt; 17 61f58099d8613fbe9708045e220efc68979d1524           0.8.1
-#&gt; 18 f8956af5f0a844440a2ff20ba480c9359c8a0978           1.4.1
-#&gt; 19 eaf650ce891d4363cdb455a9042722fec6c109cb           0.4.0
-#&gt; 20 ecce32f099b1590416dec451b26deeccc88bac32           1.0.0
-#&gt; 21 b8a361f6019a6435194afff249cc2c7cb48db055        3.9.12.1
-#&gt; 22 dd4f614a1c0e15fa8cce7ff0f165f700614c5d57           0.5.4
-#&gt; 23 055f18ff4c3ceaa0ed9cd657b5ac5710e9838fd5           1.9.2
-#&gt; 24 8a056c7296824972ebadf5946f1d58d27a3c0221           0.4.0
-#&gt; 25 8e15d37300290e1279de81aa41a3627060d3fa07           1.6.5
-#&gt; 26 f7c4e1b4c978b30ea8fe6b6ccc609731dd9e67a8        2.24.2.1
-#&gt; 27 68e71f95f83c3c3620c73ef290484a80b24ee521           1.1.1
-#&gt; 28 5c20cfbe056ffac1b1b3b628c198145a5ef65f0f             0.1
-#&gt; 29 f3c0519c98b380e2f1107de08f4da47ed9f64123           0.5.0
-#&gt; 30 35ab598ef83bc747f30d51cc10f857683979cb4a           1.5.2
-#&gt; 31 95a3738faf424c1dca6264c3842f4a0893469d23             1.5
-#&gt; 32 cdafc675efd3303c4e34b770abffb4d839032432      0.7.5.9001
-#&gt; 33 ca86aedde3fbc5277cb7f90fbee063be320ff277           0.2.4
-#&gt; 34 78cdccb1a446db3f5cb738eba31576122b08f197          0.17.4
-#&gt; 35 5dd4bcc6f59ce3df5d09beda9c4d1f9408f9b9d9           0.5.1
-#&gt; 36 b54a27bc1368c8cd6c28b2296cd2834c9f047971             2.1
-#&gt; 37 6158ae4244266f297de0b631fa7402835a857689           1.7.0
-#&gt; 38 01c925d0baff0f61164ce95ad53d7bb352b1c09d           1.7.0
-#&gt; 39 a26168f900e6bc785026ae92ec84ac5f59c5e23a           1.7.0
-#&gt; 40 e8ac0071f4955f977e2e3fec5cfb54c29945231d           1.7.0
-#&gt; 41 eb85e88f72dc67aadb1d6b30a04125ea3703c5ea           1.7.0
-#&gt; 42 7dc16a680f414802c33002e2cfb1fd3ff03f6039           1.7.0
-#&gt; 43 e5459298f72c1333907a6d442e667b5035ebff76      0.0.0.9000
-#&gt; 44 c2934ac60988eb867d26760b331c456de0abcfee           1.7.0
-#&gt; 45 35432227aaef28126407af8ef0663404ab510980             1.5
-#&gt; 46 694170dd2a9d965cc5c35a05349da2b8de6beb94           1.7.0
-#&gt; 47 88143afdf52fcf663a651a4fec0b14694c0c78f9           1.7.0
-#&gt; 48 b4f544ff0cca626fa146d0529068160be2344380           1.7.0
-#&gt; 49 322abf7c4aead6e20131c2c60428f586c376e157      0.0.0.9221
-#&gt; 50 e95c228cf64e479f5517f79c3c29fa6d7709336a           0.5.1
-#&gt; 51 1baa7d5f9ddef87f7cb6d0bb4475606f2c80d897         0.7.6.1
-#&gt; 52 3be7b6773ec0c5c37b735171aa6c5a924a6435fa           0.3.1
-#&gt; 53 1c3c622fdb49e701d1e6022f0085ca50a0013a7d           0.3.0
-#&gt; 54 b0fd1c1d9e0723c517d1e74bc39afc30a8e9e0fe           0.5.8
-#&gt; 55 9c596a7fdbaeebfc9bddd21aaa50924780c167f1           0.2.0
-#&gt; 56 c0632489b7a5a10bdf6a18402a53d09924d8d6d0           1.0.0
-#&gt; 57 f82c865d612077ce2b8e9d445026e2a115017ad0           0.9.2
-#&gt; 58 95606274209ee7abf6730ab8ab6dd31683f31f27           0.3.1
-#&gt; 59 a312336875b1bcca71feb9fca3e46764e0351803           0.3.1
-#&gt; 60 430fc44d6f51a9a4941c86ae0edf6c4eaab6151d          1.28.0
-#&gt; 61 3c886bfdd01fde172844250e7b0cf11154a94c0f          0.11.3
-#&gt; 62 62cb9951853a30c14412e953caf0e9cb87856f56           0.1.2
-#&gt; 63 d46a98d36634f1c9638740b300609102f4fba091           0.8.1
-#&gt; 64 b98a76e6cd368b35f7421472f21b38359eff07d7           0.5.5
-#&gt; 65 ad82dd097b97796fbb417e766760e2d278511a22        0.99.6.1
-#&gt; 66 fb2b8fb017beb2c5b936db8e09dbaeba1ddd0ab7             1.2
-#&gt; 67 ab0c9432e69908354fabd763f6ba2b326b539b54           0.1.3
-#&gt; 68 bdbad24360dea1865d2705a4e2e26991232b03c3           3.0.1
-#&gt; 69 1072c6bca489207e4be0af2c5eeb56068698211d           0.1.1
-#&gt; 70 613ed5af1438df535981aa09612246aa8eb8602d         0.5.2.2
-#&gt; 71 59bdaa67daeeaa3153bc2f19e2a2c0ea8c8286d0          0.10.1
-#&gt; 72 cff9ec54a69d4e37be9b1d2301da7197f15db819           0.2.5
-#&gt; 73 0720a43a51fc9fc19a1d8c2308fbbdde9f3f313d           0.1.0
-#&gt; 74 966290b4c3062ecb5dd2a223ec1acb97740286df             1.0
-#&gt; 75 2565be2177125b1bcb338612bdafcef5f45eb435           0.7.0
-#&gt; 76 e4dd649ab7426c5c4c18d4b1a2fdac6171eb5a58           0.1.5
-#&gt; 77 2a340f07559a4bb99d82dc8c5289c5eece360678           0.1.1
-#&gt; 78 186959f46c16e9f483e6694c57447dca8e5a489f           1.0.6
-#&gt; 79 e1929397d2f700c8c5187209fe9bcef262e40b40           1.2.2
-#&gt; 80 08867e8a56f9cd23e9873326973073803d7fa4a5          0.99.1
-#&gt; 81 35d58f0a39d5c8c975cb2180009c83a10933d810           0.6.4
-#&gt; 82 84b723851c7d6f81c87d0ac91e63ca13c511864b           1.4.2
-#&gt; 83 6da950a271be923cdf1f360e7c90d240dc390601          0.11.1
-#&gt; 84 7be011c902d0613f2f5fe779fd1a5c4d10f6eed3           2.6.7
-#&gt; 85 6e06c41276c9c831be213aa897859cc6e0d83aae           1.2.6
-#&gt; 86 e809fc15147b6ef729fb59403558ae1a73307296         0.3.410
-#&gt; 87 56bc659121338fbe4a40271ed7ec5545eb669dff           0.1.0
-#&gt; 88 23a8d7aed309b6a13c656a0841c136245655215d           0.3.5
-#&gt; 89 a4c37c17de1e8a2eb9e5a0389ae56ebb5b139d49           1.0.6
-#&gt; 90 9433827b1349634e12eb86fb07fa42fe05893a3c           0.8.4
-#&gt; 91 7db9411eb079bc4fcc3bf1e78af5f256bb7bbf80       0.17.9000
-#&gt; 92 98cd61d54a20e25814fc2c29306af8c81e6d94fe           2.8.1
-#&gt; 93 968c0da178e6fa5a955a6f7edddf46d32c6ae171           0.1.1
-#&gt; 94 621567f63fe7c761e4849ab3bad258ac7abaff4c           0.6.6
-#&gt; 95 2a40a4bd214cb1abb8d066c3294cbb4756d843ea             1.3
-#&gt; 96 1b0ccfdfe9490b566b174314e47219d1032a66c0           1.3.5
-#&gt; 97 b3093f46eea2cd11f1361cadc4158e5f1eefab19           1.8.0
-#&gt; 98 505175dfc00bbdfcde6010f2ec07e21f947b6045           2.3.2
-#&gt;    neuroc_version.current                        commit_id.current
-#&gt; 1            0.1.1.sc3529 65dc50df20228ce6961a761133fa07cda9fee717
-#&gt; 2            0.4.6.sc3530 c58f0f9b44bc337e74f73bbfb9b709f6a23cd2c6
-#&gt; 3            0.2.0.sc3531 0b39ef1d7d36e0c7a7239d2eeb4867492a040a6b
-#&gt; 4          0.5.4.1.sc3509 c917fdaeee8054afb524279a4b92f90e3faced03
-#&gt; 5          0.7.0.1.nc1810 3f638ceda3df0e8d35c7044f89bf8abb468c8502
-#&gt; 6                   0.2.2 cff0db5007038fbc8d26da2567d9e53b963dd1cd
-#&gt; 7                   0.1.0 f187fa50f9e180b63eb7fe8986193b58bd40f70a
-#&gt; 8           1.5.2.1.c3415 0d8b10ffa131767c2f94441cde1e3940204cc68b
-#&gt; 9                     1.0 4ec583123e1f05092449be61b035b654bfcb8d93
-#&gt; 10                    1.0 efe43d9a477b6739069ab50d7ac57dda6a6d7dd6
-#&gt; 11          0.4.6.0.c3416 a37b52bc282f210c512aa994143844fef8fb47ab
-#&gt; 12           0.57.1.c3417 d156190d837e6add1e1b4cfc00524caef0df614b
-#&gt; 13         0.6.8.1.nc1940 d84065ec3c073db64e869aa4645a8b8f55fa149a
-#&gt; 14           0.3.0.sc3532 a1de928837b35c19277ae0ab22acd799240ff27c
-#&gt; 15         0.6.8.1.nc2091 2c750e31e61e4b729f98491c92423834d0f441a4
-#&gt; 16                    1.0 11cadc9fb664a4b956c19aff34ead0b6b768e3f9
-#&gt; 17            0.8.1.c3403 a506dec0149cf8958b737a68e1e37e860d0fc816
-#&gt; 18            1.4.1.c3472 030eaec613ca3852e29cb94b460551db53def9a7
-#&gt; 19            0.4.0.nc994 ec77377fd17532ff028ec50a81c90b0db0eba507
-#&gt; 20            1.0.0.c3420 7f89e35c78ff34d05216bd2078f70bd869c659fb
-#&gt; 21        3.9.12.1.sc3902 a0939613a02b53ecea21bc684695b7b77d635f25
-#&gt; 22           0.5.4.sc3534 f2981c9ef362ee53b6630db0c8f1a159f66ee758
-#&gt; 23           1.9.2.nc1808 fec817fc71266e0c163fbb9b444a284065983c7e
-#&gt; 24            0.4.0.c3406 8a49e9ceb044d4cf66d3c8a73a283b50478eb2e5
-#&gt; 25           1.6.5.sc3535 aa5578f1c62554e7522d9f817a700e2b9fc6664b
-#&gt; 26        2.24.2.1.sc3536 904902df2661cad67227145ff2a9ed2d7d640404
-#&gt; 27                  1.1.1 bceae82bd7856544690b0d713618a5fab8b970da
-#&gt; 28                    0.1 f2a2a70762182dc46730283c85a637a193697658
-#&gt; 29           0.5.0.sc3537 9bd2a74c94156c1af8bd98657eee457d33eabb75
-#&gt; 30           1.5.2.nc1708 5c0406878de508a7782291bf5bd0cd71abd6cda9
-#&gt; 31              1.5.c1714 45d0967d46f6a666255c2041326c281e52e636c0
-#&gt; 32             0.7.5.9001 9ce13f85c40b1d2e585950c7a51acf844a53eff6
-#&gt; 33                  0.2.4 78fb218b16fcb76fef24f40c98b72478cf742a32
-#&gt; 34          0.17.4.sc3876 4c83104955ea24ef9a87a45aaef9f3ebe0655bb0
-#&gt; 35           0.5.1.nc1735 5f0a22037c3452476f931d28730ba60c9da17b64
-#&gt; 36              2.1.c2287 b4865f3d1d77a8c856f3394b2f31429d0867fcbe
-#&gt; 37                  1.7.0 a53bc4d60c980313f83bf1a0e15bbb19d6aa4d3c
-#&gt; 38                  1.7.0 ee0d3bf2dc355900da122172081b3f4ac79b3419
-#&gt; 39                  1.7.0 461ebbfe94add9ece959384e5cf2966fafac8e38
-#&gt; 40                  1.7.0 1b1e3f1d043d97aac095c4b2e4096189afe62286
-#&gt; 41                  1.7.0 f30801372d9e9a6206c975dd88349c0cae71c5a8
-#&gt; 42                  1.7.0 ffdb9ef5ee58854b62d6ef2dfbda62f43e9ee1fb
-#&gt; 43             0.0.0.9000 5241f5f47c292e84f9e5925a3f303ef0e0e6f1eb
-#&gt; 44                  1.7.0 f8a0320ddd77c7c43711cd8b5b641e94be90db0f
-#&gt; 45                    1.5 3fd23ea2a7fe366ec94dfb1b89013d44c79a1ef5
-#&gt; 46                  1.7.0 3344cc38155aafe8fb3868b544cf6ee177948011
-#&gt; 47                  1.7.0 3bc5c4abac3521d6ce7ad0e3ba60f68448acbd78
-#&gt; 48                  1.7.0 74b5d244a9d7bdbd66a44c86d3b43fcab11784f6
-#&gt; 49      0.0.0.9221.nc3311 5a8af7fcbfebdf0b7663bff2588377e3fd44f669
-#&gt; 50           0.5.1.sc3518 af8c052a1130653bd5dc8763984f5288ceb25356
-#&gt; 51         0.7.6.1.sc3877 d99dc0a8e82fee9aab637669aadebf6aba4d5c0a
-#&gt; 52                  0.3.1 d6af3070a032724156cd5558f2037dff6533e800
-#&gt; 53           0.3.0.sc3878 7c85f33aef229a148e2251c10e671a8f673ba535
-#&gt; 54           0.5.8.sc3879 94957811bc8227dc4ab312c7cc3366b47b7010de
-#&gt; 55                  0.2.0 c0e0153490f8473bfb35b53021e3852457365d70
-#&gt; 56            1.0.0.c3427 7467797f2827b9a78ddc0dbe036c4ead55c6ee0b
-#&gt; 57           0.9.2.nc1290 9c1380005684a46901a422dd403da5d17f7a4d4d
-#&gt; 58           0.3.1.nc1738 e9a0cd845bad82dbf751b157d727fb9c77088b09
-#&gt; 59                  0.3.1 ca2193b1fa8c726b0a26712fc2fdc7c1ed198e7c
-#&gt; 60           1.28.0.c3428 d94ed432744ec7177d5741cf17314882a0952b62
-#&gt; 61          0.11.3.nc1929 0afcebf2b29e0a6fb6fa61c25b02c79dadaa3ec6
-#&gt; 62           0.1.2.nc1879 3582fa8b5ebbc6e7d3d3b2c59668d1b2d19c3e24
-#&gt; 63                  0.8.1 0944e00ae82ef3469eb95de8fdccfd980ef284cd
-#&gt; 64                  0.5.5 e750eed3c78169e94c767b970295165f2cbc4972
-#&gt; 65               0.99.6.1 4ad78e9ac08f652ab3214249e1880bf911be7a94
-#&gt; 66              1.2.nc127 e5a08aa389090a1d8c4ecc29d069e90ceea5e40e
-#&gt; 67                  0.1.3 7ba5f2d0961658cdd8ccb14197b80b8ad52f3bfa
-#&gt; 68           3.0.1.sc3543 c7bf8cd18be07164d3ea11f18612c2a2326aa8b5
-#&gt; 69                  0.1.1 88048393db5663ea251cbde2922e91d21b4bb971
-#&gt; 70          0.5.2.2.c3430 abaf143dcf8487f8109b34b08b9d857b2fda02ce
-#&gt; 71           0.10.1.c3408 a8dbb332034761e3ea64ca63d5037a95167d871d
-#&gt; 72            0.2.5.c3473 628565110db89359fe309772022e072ff977be7d
-#&gt; 73            0.1.0.nc616 83860814015883e0a3714d353c6d4a6246ab4f59
-#&gt; 74              1.0.c2294 e8a8878f58362688eb3e4b6eaeb6f09977dfce0c
-#&gt; 75           0.7.0.sc3545 7b8e18c4c22abfba25617c36610788d0380ae176
-#&gt; 76            0.1.5.c3487 c0d5b2b2098df59f99086db0a8c2f5cdac3aea1f
-#&gt; 77           0.1.1.sc3546 42b091c9f8c7dd9c74c1576ce12e621bfe718ade
-#&gt; 78            1.0.6.c1452 6798739198c313bde5d97000bebb7ee5ed10cadd
-#&gt; 79            1.2.2.c2296 5dac393f3b775949738671cafdca786811e59966
-#&gt; 80                 0.99.1 b97286a1b11f2b2df8d4319f93dd0050f985f1d9
-#&gt; 81           0.6.4.sc3548 390a6adb871b2b6057c0102570069efd63e0bfc4
-#&gt; 82            1.4.2.c3475 9a5deef74b70e3822bfec68ffd1cd0087c197b26
-#&gt; 83                 0.11.1 7b929d7f1356c0b46c4aab0bd7a35ea1acf3140d
-#&gt; 84            2.6.7.c3410 19f3046630c224710f1899c46277a79a79b6437f
-#&gt; 85           1.2.6.sc3549 89c0911f838f3bb60b26e27be345d03df828b0f7
-#&gt; 86         0.3.410.nc1597 b0b702cd9e5975e3cf4863347f10b7fc05c2c803
-#&gt; 87           0.1.0.sc3550 a1f295c7900a2e0e4e543fa71061143c7b14e965
-#&gt; 88           0.3.5.nc1579 4c32e3c89e6c1956f3ffe289c2f5ceabb04a06ec
-#&gt; 89           1.0.6.nc1476 0189ca84dd61dee3d718e7c6aebd0511c0815556
-#&gt; 90           0.8.4.sc3880 4eb4652c2ada39af45958fccb54f8bcdba9e1b8f
-#&gt; 91        0.17.9000.c3476 f03d6ba432417cf1428bb3dd6e2700fd6c9d2dd0
-#&gt; 92            2.8.1.c2300 a96df15392876e48a534369f8ba4e2596d04e48c
-#&gt; 93                  0.1.1 ae0ef3a07bf48e4892c802b77c7792cde6364953
-#&gt; 94            0.6.6.c3412 f0f2c08d9d817d2bace1ef68ef330411fe55779f
-#&gt; 95              1.3.c3439 79cb23a3218beb23a65c44132a7916707efc3879
-#&gt; 96            1.3.5.c3440 147ff7e57c1cf0e8ef2854fa17970b743d383e12
-#&gt; 97                  1.8.0 1112186f1cbe4cc28b5149e7e4e3a0856d105538
-#&gt; 98            2.3.2.c3441 d84c664df20c20bb1aa0f049bc310c80396a7224</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>neuro_package_table</span>()</div><div class='output co'>#&gt;                      repo version.stable neuroc_version.stable
+#&gt; 1                     aal          0.1.1                 0.1.1
+#&gt; 2                   afnir          0.4.6                 0.4.6
+#&gt; 3                   alvin          0.3.0                 0.3.0
+#&gt; 4                   ANTsR        0.5.7.4               0.5.7.4
+#&gt; 5               ANTsRCore        0.7.4.6               0.7.4.6
+#&gt; 6                     aws          2.4.1                 2.4.1
+#&gt; 7                 bftools        0.2.3.3               0.2.3.3
+#&gt; 8               brainKCCA          0.1.0                 0.1.0
+#&gt; 9                  brainR          1.6.0                 1.6.0
+#&gt; 10                    cap            1.0                   1.0
+#&gt; 11                   cfma            1.0                   1.0
+#&gt; 12                  cifti          0.4.7                 0.4.7
+#&gt; 13                 clever          0.1.5                 0.1.5
+#&gt; 14               dcemriS4         0.57.2                0.57.2
+#&gt; 15               dcm2niir        0.6.9.1               0.6.9.1
+#&gt; 16                dcmsort          0.3.0                 0.3.0
+#&gt; 17                  dcmtk        0.6.8.1               0.6.8.1
+#&gt; 18            DensParcorr            1.0                   1.0
+#&gt; 19                 divest          0.9.0                 0.9.0
+#&gt; 20                    dti          1.5.2                 1.5.2
+#&gt; 21    EEGSpectralAnalysis     0.0.0.9001            0.0.0.9001
+#&gt; 22               eegUtils     0.3.0.9000            0.3.0.9000
+#&gt; 23            EveTemplate          1.0.0                 1.0.0
+#&gt; 24              extrantsr         3.9.13                3.9.13
+#&gt; 25               flexconn        0.5.4.5               0.5.4.5
+#&gt; 26                   fmri          1.9.3                 1.9.3
+#&gt; 27                 fmriqa          0.4.0                 0.4.0
+#&gt; 28             freesurfer        1.6.7.1               1.6.7.1
+#&gt; 29      freesurferformats         0.1.13                0.1.13
+#&gt; 30                   fslr         2.25.0                2.25.0
+#&gt; 31            gganatogram          1.1.1                 1.1.1
+#&gt; 32                ggBrain            0.1                   0.1
+#&gt; 33                ggneuro          0.5.0                 0.5.0
+#&gt; 34                  ggseg          1.5.5                 1.5.5
+#&gt; 35                ggseg3d          1.6.0                 1.6.0
+#&gt; 36              ggsegChen          1.0.1                 1.0.1
+#&gt; 37      ggsegDefaultExtra            1.0                   1.0
+#&gt; 38        ggsegDesterieux            1.0                   1.0
+#&gt; 39             ggsegExtra            1.5                   1.5
+#&gt; 40           ggsegGlasser            1.0                   1.0
+#&gt; 41                ggsegHO          1.0.1                 1.0.1
+#&gt; 42              ggsegICBM            1.0                   1.0
+#&gt; 43               ggsegJHU            1.0                   1.0
+#&gt; 44          ggsegSchaefer            1.0                   1.0
+#&gt; 45           ggsegTracula            1.0                   1.0
+#&gt; 46           ggsegYeo2011            1.0                   1.0
+#&gt; 47                  gifti          0.7.6                 0.7.6
+#&gt; 48                   I2C2          0.2.4                 0.2.4
+#&gt; 49                 ichseg         0.17.1                0.17.1
+#&gt; 50                   ITKR        0.5.1.2               0.5.1.2
+#&gt; 51               itksnapr            2.1                   2.1
+#&gt; 52            kirby21.asl          1.7.0                 1.7.0
+#&gt; 53           kirby21.base          1.7.3                 1.7.3
+#&gt; 54           kirby21.det2          1.7.0                 1.7.0
+#&gt; 55            kirby21.dti          1.7.0                 1.7.0
+#&gt; 56          kirby21.flair          1.7.0                 1.7.0
+#&gt; 57           kirby21.fmri          1.7.0                 1.7.0
+#&gt; 58       kirby21.mricloud          1.0.0                 1.0.0
+#&gt; 59             kirby21.mt          1.7.0                 1.7.0
+#&gt; 60           kirby21.smri            1.5                   1.5
+#&gt; 61             kirby21.t1        1.7.3.2               1.7.3.2
+#&gt; 62             kirby21.t2          1.7.0                 1.7.0
+#&gt; 63           kirby21.vaso          1.7.0                 1.7.0
+#&gt; 64                LESYMAP     0.0.0.9221            0.0.0.9221
+#&gt; 65                  LINDA          0.5.1                 0.5.1
+#&gt; 66                 lungct        0.7.6.1               0.7.6.1
+#&gt; 67         malf.templates          1.2.0                 1.2.0
+#&gt; 68                 medals          0.3.0                 0.3.0
+#&gt; 69                 mimosa          0.5.8                 0.5.8
+#&gt; 70                  mmand          1.6.0                 1.6.0
+#&gt; 71                    mni          0.2.0                 0.2.0
+#&gt; 72            MNITemplate          1.0.0                 1.0.0
+#&gt; 73              MriCloudR          0.9.3                 0.9.3
+#&gt; 74  MRIcloudT1volumetrics          0.3.1                 0.3.1
+#&gt; 75                  msmri          0.3.1                 0.3.1
+#&gt; 76              neurobase         1.30.1                1.30.1
+#&gt; 77          neurocInstall         0.12.1                0.12.1
+#&gt; 78            neurocStats          0.1.2                 0.1.2
+#&gt; 79               neurohcp          0.9.0                 0.9.0
+#&gt; 80             neurovault          0.5.6                 0.5.6
+#&gt; 81             NiftiArray       0.99.6.1              0.99.6.1
+#&gt; 82               nitrcbot            1.2                   1.2
+#&gt; 83                   nsrr          0.1.5                 0.1.5
+#&gt; 84                  oasis          3.0.1                 3.0.1
+#&gt; 85                oro.asl          0.1.1                 0.1.1
+#&gt; 86              oro.dicom        0.5.2.2               0.5.2.2
+#&gt; 87              oro.nifti         0.10.3                0.10.3
+#&gt; 88                oro.pet          0.2.5                 0.2.5
+#&gt; 89                 pain21          0.1.1                 0.1.1
+#&gt; 90                papayar            1.0                   1.0
+#&gt; 91           papayaWidget          0.7.1                 0.7.1
+#&gt; 92                    pbj          0.1.5                 0.1.5
+#&gt; 93                penn115          0.1.1                 0.1.1
+#&gt; 94                   qMRI            1.2                   1.2
+#&gt; 95               radtools        1.0.7.2               1.0.7.2
+#&gt; 96                  RAVEL          1.2.2                 1.2.2
+#&gt; 97              RAVELData         0.99.1                0.99.1
+#&gt; 98                rcamino          0.6.4                 0.6.4
+#&gt; 99                    RIA          1.4.2                 1.4.2
+#&gt; 100                RNifti          1.2.3                 1.2.3
+#&gt; 101             RNiftyReg          2.7.0                 2.7.0
+#&gt; 102                 robex        1.2.6.1               1.2.6.1
+#&gt; 103           ROpenCVLite        0.3.410               0.3.410
+#&gt; 104                rtapas          0.2.0                 0.2.0
+#&gt; 105               Rvision          0.3.5                 0.3.5
+#&gt; 106                 Rxnat         1.0.14                1.0.14
+#&gt; 107          smri.process          0.8.4                 0.8.4
+#&gt; 108                 spant          1.7.0                 1.7.0
+#&gt; 109                spm12r          2.8.1                 2.8.1
+#&gt; 110                 sri24          0.1.2                 0.1.2
+#&gt; 111               stapler          0.7.2                 0.7.2
+#&gt; 112               sublime            1.3                   1.3
+#&gt; 113                 voxel          1.3.5                 1.3.5
+#&gt; 114              waveslim          1.8.0                 1.8.0
+#&gt; 115           WhiteStripe          2.3.2                 2.3.2
+#&gt;                             commit_id.stable version.current
+#&gt; 1   a2469954de51f20cca48c110d242546acbfda6fa           0.1.1
+#&gt; 2   99cc35431e6c9c77de9398d3b2d9480cb85c4575           0.4.6
+#&gt; 3   07457349f46d8fc5df39f74c16392f792c873bae           0.3.0
+#&gt; 4   248f1939a2965196b6e3cde49deb5e7470439918         0.5.6.5
+#&gt; 5   8f8cc84d337df596442bf6d7f6d4c6bf1370d5b4         0.7.4.8
+#&gt; 6   b9e5b5d6e09a61d155f6dd44abce787e9346496b           2.4.1
+#&gt; 7   7af8669735101c50884d96c62d1f4a3135b3689e         0.2.3.1
+#&gt; 8   12e3d0f0c7a2041350c2196789af1077a80aa40a           0.1.0
+#&gt; 9   ffb399d47d9eb6610386168d9b08047b2884aff3           1.6.0
+#&gt; 10  920234e09e295ca64817b0046d0241c68b473374             1.0
+#&gt; 11  eddbbbe8e634960a3f445380e8cba0eacc9e973e             1.0
+#&gt; 12  dd98b8c27731fb1e62235827cd6771d2923adcab           0.4.7
+#&gt; 13  b93399c2f0cfd0c1c5dc283731116feea65bdeb6           0.2.0
+#&gt; 14  ed245f7be37b040d501821c3186de85e9cdbefab          0.57.2
+#&gt; 15  99438d63d8352019c06be2a750b3dc3c62d725a1         0.6.8.1
+#&gt; 16  8851d0ae583e5bbe808e4642090c389ba8a4dbe5           0.3.0
+#&gt; 17  7b0d0c7bbc62c0fdb5a3d13dc63ba7a88beb669c         0.6.8.1
+#&gt; 18  6787e6ef6ed40e4f1b0bec5f9e225d2866309705             1.0
+#&gt; 19  037668802cd4c620c37701bb2341269f8eb387f6           0.9.0
+#&gt; 20  30fe632a777809024d08d4f8227060add12a19a0           1.5.2
+#&gt; 21  172dfaa203a135842784794c997bfc212d42be1f      0.0.0.9001
+#&gt; 22  eaf650ce891d4363cdb455a9042722fec6c109cb           0.4.0
+#&gt; 23  ecce32f099b1590416dec451b26deeccc88bac32           1.0.1
+#&gt; 24  559226afb2debd91ce02df92c3d34ebeefff3272        3.9.13.1
+#&gt; 25  80eb5e503d376c9d18d50a90e10af155eb96201c         0.5.4.5
+#&gt; 26  b9e064d8515365ae0c612c9ff4123cc44967b561         1.9.2.1
+#&gt; 27  8a056c7296824972ebadf5946f1d58d27a3c0221           0.4.0
+#&gt; 28  edf803a0b4af89d2f47d8a3e4ad3f9cd24072e5b           1.6.7
+#&gt; 29  694c14e4295a0b0d1d42e73bbff0094df26c7a18          0.1.12
+#&gt; 30  e903b76beb878403ad9848cde721fc1dbc91f331          2.24.4
+#&gt; 31  68e71f95f83c3c3620c73ef290484a80b24ee521           1.1.1
+#&gt; 32  5c20cfbe056ffac1b1b3b628c198145a5ef65f0f           0.1.2
+#&gt; 33  f3c0519c98b380e2f1107de08f4da47ed9f64123           0.5.0
+#&gt; 34  498f086e0707782dce3f086079f11c4f289dc26b           1.5.5
+#&gt; 35  3db3be2dfc69b171c72faf87cee7e4941a976fe4           1.6.1
+#&gt; 36  bc3dd98bd442d2a8627c27f74bc17ee6587f9f89           1.0.1
+#&gt; 37  12ef596771003af27c6f8b8b6cf2f5545f1be0aa             1.0
+#&gt; 38  c934eae7de2f84a2825b062ca456d7ee3ce60538             1.0
+#&gt; 39  95a3738faf424c1dca6264c3842f4a0893469d23             1.5
+#&gt; 40  40609608792a4cdf9ae1d23cbbb37d92001cd382             1.0
+#&gt; 41  86802c887935ad8fea4ac7e8bc57777a727c0ad0           1.0.1
+#&gt; 42  ab456a1e010c49a516fb5b9e91dda74dea62674a             1.0
+#&gt; 43  dba40dee93d8e0bb41ffa720e93d131b548491b1             1.0
+#&gt; 44  7a1eeb617e0bac9217012ebe6f0e66d85628529b             1.0
+#&gt; 45  8368b50066f791462077490985cad1f99d989bf6             1.0
+#&gt; 46  4e4db664e101214e75072c8b16cabfb01312daca             1.0
+#&gt; 47  eba1b47bba16e090d3f0466b5dd2a05e96494a22      0.7.5.9001
+#&gt; 48  ca86aedde3fbc5277cb7f90fbee063be320ff277           0.2.4
+#&gt; 49  78cdccb1a446db3f5cb738eba31576122b08f197          0.17.4
+#&gt; 50  5dd4bcc6f59ce3df5d09beda9c4d1f9408f9b9d9       0.5.3.2.0
+#&gt; 51  b54a27bc1368c8cd6c28b2296cd2834c9f047971             2.1
+#&gt; 52  6158ae4244266f297de0b631fa7402835a857689           1.7.0
+#&gt; 53  62e79079ed0e641a5dd143a2603250164b9935df           1.7.3
+#&gt; 54  a26168f900e6bc785026ae92ec84ac5f59c5e23a           1.7.0
+#&gt; 55  e8ac0071f4955f977e2e3fec5cfb54c29945231d           1.7.0
+#&gt; 56  eb85e88f72dc67aadb1d6b30a04125ea3703c5ea           1.7.0
+#&gt; 57  7dc16a680f414802c33002e2cfb1fd3ff03f6039           1.7.0
+#&gt; 58  af9ba6245a124587e5d9f091866eb938358ce38f      0.0.0.9000
+#&gt; 59  c2934ac60988eb867d26760b331c456de0abcfee           1.7.0
+#&gt; 60  35432227aaef28126407af8ef0663404ab510980             1.5
+#&gt; 61  4dafe3f99343142aa0d13a3d805cdc1e9eaf83b1         1.7.3.2
+#&gt; 62  88143afdf52fcf663a651a4fec0b14694c0c78f9           1.7.0
+#&gt; 63  b4f544ff0cca626fa146d0529068160be2344380           1.7.0
+#&gt; 64  322abf7c4aead6e20131c2c60428f586c376e157      0.0.0.9221
+#&gt; 65  e95c228cf64e479f5517f79c3c29fa6d7709336a           0.5.1
+#&gt; 66  1baa7d5f9ddef87f7cb6d0bb4475606f2c80d897         0.7.6.1
+#&gt; 67  dfb2cca8f339c2cc114651a1df93632ccecb52b3           1.2.0
+#&gt; 68  1c3c622fdb49e701d1e6022f0085ca50a0013a7d           0.3.0
+#&gt; 69  b0fd1c1d9e0723c517d1e74bc39afc30a8e9e0fe           0.5.8
+#&gt; 70  8112ea9ead97c2a91af600989c0f651ba9d6a287           1.6.1
+#&gt; 71  9c596a7fdbaeebfc9bddd21aaa50924780c167f1           0.2.0
+#&gt; 72  c0632489b7a5a10bdf6a18402a53d09924d8d6d0           1.0.1
+#&gt; 73  f82c865d612077ce2b8e9d445026e2a115017ad0           0.9.2
+#&gt; 74  95606274209ee7abf6730ab8ab6dd31683f31f27           0.3.1
+#&gt; 75  a312336875b1bcca71feb9fca3e46764e0351803           0.3.1
+#&gt; 76  b5fcc694621d55cdd95f60f140f2f7757db72a1e          1.30.1
+#&gt; 77  0329aba94504c5caadfab98799ec0e9d08afc40d          0.12.1
+#&gt; 78  62cb9951853a30c14412e953caf0e9cb87856f56           0.1.2
+#&gt; 79  305a36ffed6e63188407c09037bbab38624a9816           0.8.1
+#&gt; 80  b98a76e6cd368b35f7421472f21b38359eff07d7           0.5.5
+#&gt; 81  9a04b8ad4c87aef29cd061a73ee0aaf79a075181        0.99.6.1
+#&gt; 82  fb2b8fb017beb2c5b936db8e09dbaeba1ddd0ab7             1.2
+#&gt; 83  fdff1c0e95b2ff11f8b8a613044fa776fd6829d2           0.2.0
+#&gt; 84  bdbad24360dea1865d2705a4e2e26991232b03c3           3.0.1
+#&gt; 85  1072c6bca489207e4be0af2c5eeb56068698211d           0.1.1
+#&gt; 86  613ed5af1438df535981aa09612246aa8eb8602d         0.5.2.2
+#&gt; 87  6546fca5524c7a6e8f6f41f83b02610c41624a94          0.10.3
+#&gt; 88  cff9ec54a69d4e37be9b1d2301da7197f15db819           0.2.5
+#&gt; 89  607aba51c7f37eaa57c8c79990b5663831efd025           0.1.0
+#&gt; 90  966290b4c3062ecb5dd2a223ec1acb97740286df             1.0
+#&gt; 91  69b3e00aa322ec5cd52f28f01edb02ca317b7f1d           0.7.1
+#&gt; 92  e4dd649ab7426c5c4c18d4b1a2fdac6171eb5a58           0.1.6
+#&gt; 93  2a340f07559a4bb99d82dc8c5289c5eece360678           0.1.1
+#&gt; 94  6823ce8f58f2247ae822f45c552a6896d5a196cd             1.2
+#&gt; 95  186959f46c16e9f483e6694c57447dca8e5a489f         1.0.7.2
+#&gt; 96  e1929397d2f700c8c5187209fe9bcef262e40b40           1.3.5
+#&gt; 97  08867e8a56f9cd23e9873326973073803d7fa4a5           1.0.1
+#&gt; 98  35d58f0a39d5c8c975cb2180009c83a10933d810           0.6.4
+#&gt; 99  84b723851c7d6f81c87d0ac91e63ca13c511864b           1.4.2
+#&gt; 100 fcfc47057f52ef7810c6f649c5aea703e02cf701           1.2.3
+#&gt; 101 7d98e43e64b67e2f4b93b2aec54479ce763e5b53           2.7.0
+#&gt; 102 82aeceba95c184e7373a9034a0a3bc48884c79cf         1.2.6.1
+#&gt; 103 e809fc15147b6ef729fb59403558ae1a73307296          4.30.2
+#&gt; 104 0049d8852acbf01a8b9a6323262bc455b2b88371           0.1.0
+#&gt; 105 23a8d7aed309b6a13c656a0841c136245655215d           0.3.5
+#&gt; 106 b8154c1b202fe7d531c85bd97c7aab674955124c          1.0.14
+#&gt; 107 9433827b1349634e12eb86fb07fa42fe05893a3c           0.8.4
+#&gt; 108 b347ca8a221cf1f25d80f1112a9577811b79fb8b        1.7.9000
+#&gt; 109 98cd61d54a20e25814fc2c29306af8c81e6d94fe           2.8.1
+#&gt; 110 968c0da178e6fa5a955a6f7edddf46d32c6ae171           0.1.1
+#&gt; 111 477df8ce1c948ea397279292a4095089a8781646           0.7.2
+#&gt; 112 2a40a4bd214cb1abb8d066c3294cbb4756d843ea             1.3
+#&gt; 113 1b0ccfdfe9490b566b174314e47219d1032a66c0           1.3.5
+#&gt; 114 b3093f46eea2cd11f1361cadc4158e5f1eefab19           1.8.2
+#&gt; 115 505175dfc00bbdfcde6010f2ec07e21f947b6045           2.3.2
+#&gt;     neuroc_version.current                        commit_id.current
+#&gt; 1             0.1.1.sc4186 9d8c521c132bd2f6be8461f5e2684ae9eada22f9
+#&gt; 2             0.4.6.sc4155 4975d742b8d530fbc67d83a7c1d0199a0ba9ae62
+#&gt; 3             0.3.0.nc4070 a42b5d0f0620dc463d2d43d1c0e52b4e19859c35
+#&gt; 4           0.5.6.5.nc4353 eab00ff67b8ce8e621c6d6a717ad9fa5ad21d6c8
+#&gt; 5           0.7.4.8.nc4390 7dbef4a3be7c626c36b24992b177bbed11f8481c
+#&gt; 6                    2.4.1 0e0b52ccd0e55558992922d9abbf98294e13cf44
+#&gt; 7                  0.2.3.1 1200641d3131ba358a44291f380015464492c0da
+#&gt; 8             0.1.0.sc4156 eb124eaf23dc94e67a3de921b4b95e42d6c9e569
+#&gt; 9             1.6.0.sc4157 b71cabe8411470f4f53c2a73dd782f0c126f8e9c
+#&gt; 10                     1.0 4ec583123e1f05092449be61b035b654bfcb8d93
+#&gt; 11                     1.0 efe43d9a477b6739069ab50d7ac57dda6a6d7dd6
+#&gt; 12            0.4.7.sc4394 4c52ded1bff6bff31ebba63e7a812ab98063d05d
+#&gt; 13            0.2.0.nc4355 13fe74b0af105e7980f6a5bbc69dbc7105bd6f17
+#&gt; 14           0.57.2.sc4159 de430ab4acccd59631191a94dc4734769c320bd9
+#&gt; 15          0.6.8.1.nc1940 d84065ec3c073db64e869aa4645a8b8f55fa149a
+#&gt; 16            0.3.0.sc4375 d986d09ab4ada56fc2ffcba5ccc0d039f33f7225
+#&gt; 17          0.6.8.1.nc2091 2c750e31e61e4b729f98491c92423834d0f441a4
+#&gt; 18                     1.0 11cadc9fb664a4b956c19aff34ead0b6b768e3f9
+#&gt; 19                   0.9.0 64aef714b4e29931f198292c59cd6e167351773f
+#&gt; 20            1.5.2.sc4161 272463a6036a2bfd101d053d4307966186364e51
+#&gt; 21              0.0.0.9001 dd935deb16f0778bb033e20845d91609a3035a04
+#&gt; 22             0.4.0.nc994 ec77377fd17532ff028ec50a81c90b0db0eba507
+#&gt; 23            1.0.1.sc4162 dbd18807b64301a99cdccc76493bfcd520b740be
+#&gt; 24         3.9.13.1.sc4376 77022ab6b279472bbdc4012c1385a87df0230273
+#&gt; 25          0.5.4.5.sc4360 b914914e9f2279cbedfccd44ccfedd03645b76ae
+#&gt; 26          1.9.2.1.sc3970 9a7c6310fa01380a80b89e9298f46c5ee4cd2753
+#&gt; 27            0.4.0.sc4361 aaa8c59900f93815c888ed97fae77cdc3f6e9fb6
+#&gt; 28            1.6.7.nc4051 9bc5d366584ca943a4f72c8f93db562aebd5cedc
+#&gt; 29                  0.1.12 70866202943036202600c1040fcf9e73d03c92b6
+#&gt; 30           2.24.4.sc4164 027f42a3c71455446e5adb54e526c68bb51e8e7a
+#&gt; 31                   1.1.1 bceae82bd7856544690b0d713618a5fab8b970da
+#&gt; 32            0.1.2.nc4227 1f8c4f60677f7c10e740bca002317701e8548b19
+#&gt; 33            0.5.0.sc4165 6873d5587b8b8ea406d02d5e0a337f7d52bdfb9f
+#&gt; 34            1.5.5.nc4318 0e21d1a83068f672cf49dbe0062e459046c5a757
+#&gt; 35            1.6.1.nc4385 ee5d78ddbe9f68d04905fd161b3fc2a7a2d82a16
+#&gt; 36                   1.0.1 722769db3925e30e1134c1248e4528139cd750f8
+#&gt; 37                     1.0 43fe8dd7a7ab568313ed6203f062dad9057f6d4a
+#&gt; 38                     1.0 340e87d287bb5f0ff1d0e31fea4ac6f74cfaaebb
+#&gt; 39               1.5.c1714 45d0967d46f6a666255c2041326c281e52e636c0
+#&gt; 40                     1.0 31f6e468ae23f6a8f3369ba08352ce997f929a68
+#&gt; 41                   1.0.1 51b503f9119589972be3cb604321dfc125414687
+#&gt; 42                     1.0 737010c94d14e5817cfec5ce940a8b5116664130
+#&gt; 43                     1.0 e027a75baf1e0c6f476979f21cc3baa6bc8fd8e7
+#&gt; 44                     1.0 b4b599207370c03b8c5c7f052a55b137990a0de1
+#&gt; 45                     1.0 3616eb965e996cf136d2743b9edb8606533c8941
+#&gt; 46                     1.0 b963685781aaa265e05b86176393ec9532e0abce
+#&gt; 47       0.7.5.9001.nc4254 409204a4c5db83169a95c80738a98000b4526f61
+#&gt; 48                   0.2.4 78fb218b16fcb76fef24f40c98b72478cf742a32
+#&gt; 49           0.17.4.nc4059 c94e9564aabc8bee6fe7a149abc0b8c7c87a979c
+#&gt; 50        0.5.3.2.0.nc4117 207804d6612da8cb4138fc11dcb472a8f3aa3d6f
+#&gt; 51              2.1.sc4167 71378588fd8202551e3ee90678b0d7bbfabdc12a
+#&gt; 52            1.7.0.sc4242 9982286377ebdc791231bb773cdd507c40c9cd5d
+#&gt; 53            1.7.3.nc4255 c0e89f2c2db62d2b8f65740546bf4f7058cddc5a
+#&gt; 54            1.7.0.sc4243 9e6b5ed9e15e7236a8375e63d57cd8da9962aa75
+#&gt; 55            1.7.0.sc4252 51394d977bed89154cbef70c71f32d46ad9286f7
+#&gt; 56            1.7.0.sc4245 24a17bcfe624c46749b9dd2e15f8365bc614c958
+#&gt; 57            1.7.0.sc4246 82da0f06eeb98b04678ac8796e11361f39c5d578
+#&gt; 58              0.0.0.9000 5241f5f47c292e84f9e5925a3f303ef0e0e6f1eb
+#&gt; 59            1.7.0.sc4247 34403525ac9d79ff802dc84f8b512d81061d0aa1
+#&gt; 60              1.5.sc4253 c8c00b4dadb4bc7d38bafbd580e3e0ec8cc66ccc
+#&gt; 61          1.7.3.2.sc4249 b0539512c38f47cc966f1efce83445269173b2f4
+#&gt; 62            1.7.0.sc4250 707d59da5fcc9649e14a86538c8e99fd4558df51
+#&gt; 63            1.7.0.sc4251 fec7dfda2db415634af62db0de003ec6d4fbd863
+#&gt; 64       0.0.0.9221.nc4153 0ba7bcf53c46b0fd6685010ea304ee6f17fa4855
+#&gt; 65            0.5.1.sc4144 7f6fdf3b22f54daa626a0dcaed520104669b8a89
+#&gt; 66          0.7.6.1.nc4264 eaa5f6f91e3b145c2bfa0a98e0fdc45eb83155b7
+#&gt; 67                   1.2.0 6fab94fcb9b058487acebf82b6e3920da08ad51e
+#&gt; 68            0.3.0.nc4400 de0f35afc0e301a52f400b629e313764e96153f0
+#&gt; 69            0.5.8.nc4068 a31efcea7780b3fd62a50a968b319c174a9a13c6
+#&gt; 70            1.6.1.nc4109 0905a487dd0aadc91488053ec8b04a7a63506183
+#&gt; 71                   0.2.0 c0e0153490f8473bfb35b53021e3852457365d70
+#&gt; 72            1.0.1.sc4169 bc90db49df82e6063d97e35f3645221f89fc2736
+#&gt; 73            0.9.2.nc1290 9c1380005684a46901a422dd403da5d17f7a4d4d
+#&gt; 74            0.3.1.nc1738 e9a0cd845bad82dbf751b157d727fb9c77088b09
+#&gt; 75                   0.3.1 ca2193b1fa8c726b0a26712fc2fdc7c1ed198e7c
+#&gt; 76           1.30.1.nc4229 7af8cf494e298defd563b92b40af3f7be43bb94a
+#&gt; 77           0.12.1.nc4151 eae2b620f72339abbec1b5fa6f22bb9ce864e078
+#&gt; 78            0.1.2.nc1879 3582fa8b5ebbc6e7d3d3b2c59668d1b2d19c3e24
+#&gt; 79                   0.8.1 0944e00ae82ef3469eb95de8fdccfd980ef284cd
+#&gt; 80                   0.5.5 e750eed3c78169e94c767b970295165f2cbc4972
+#&gt; 81         0.99.6.1.nc4232 88eec2f061b80efb4ec13d774d7f2c53ebe6deec
+#&gt; 82               1.2.nc127 e5a08aa389090a1d8c4ecc29d069e90ceea5e40e
+#&gt; 83            0.2.0.nc4238 b0236a4108501eb49cd14f39ee37be5c32138ea4
+#&gt; 84            3.0.1.sc4379 4f32664b232b98bbdfb09864a4f9a271eecb99ed
+#&gt; 85                   0.1.1 88048393db5663ea251cbde2922e91d21b4bb971
+#&gt; 86          0.5.2.2.sc4172 92047bfc1a0759480da620e0cec2e5fbd155a42a
+#&gt; 87           0.10.3.sc4364 5a3ea7f7a5b91773233bf7e412b338ecb8991ca9
+#&gt; 88            0.2.5.sc4173 763bc925b32a12068c756f15d042e64996a96678
+#&gt; 89             0.1.0.nc616 83860814015883e0a3714d353c6d4a6246ab4f59
+#&gt; 90              1.0.sc4174 58064e081513b4b91fcf34b0af26e2792a267829
+#&gt; 91            0.7.1.sc4010 e24ac562b577f15df28edafc9ac139feda361cb6
+#&gt; 92            0.1.6.sc4380 96e56b46b1676a15155081f6af8564754697fba9
+#&gt; 93            0.1.1.sc4011 2472021847c05b31375668cdd9763fc79b533b7b
+#&gt; 94              1.2.sc4175 be88e85949b18b81077bf3f318aafb1181748a2b
+#&gt; 95          1.0.7.2.sc4176 e7ce929058b1fe5f58eacd16fd67ea1e1abe9147
+#&gt; 96            1.3.5.nc4319 0a4055254d1c2921bab2da0cf6f4acfe1fa417cf
+#&gt; 97            1.0.1.nc4323 472c07b08c09662db2c31e62ca89c34f463c0e05
+#&gt; 98            0.6.4.sc4013 78bbe25ce189d6a47f70777eac6943d323142a3e
+#&gt; 99            1.4.2.sc4178 52114390f4ac21f57bf5a25ee253ebadb0502da3
+#&gt; 100           1.2.3.nc4398 2aafc0cfc03c9792cde43109073bbb76979ad3d5
+#&gt; 101                  2.7.0 c3dee97d24254e4a24ea5ee0123a79e3f128983a
+#&gt; 102         1.2.6.1.nc4152 0d30ebff0bc5ae5ab3094c93b650e181c6d12406
+#&gt; 103          4.30.2.nc4256 83d3ca1615a5b3a42707125a2b7033e7df361367
+#&gt; 104           0.1.0.sc4015 4291eb6c8d9ab2640de46d67d1100f7c5ba37c50
+#&gt; 105           0.3.5.nc1579 4c32e3c89e6c1956f3ffe289c2f5ceabb04a06ec
+#&gt; 106          1.0.14.nc4354 640dc4b79ff9a906674fcf2bfeeb61eb137506fb
+#&gt; 107           0.8.4.sc4381 5f1aa6198fec095f1346db75409b93fa3b914cc1
+#&gt; 108        1.7.9000.nc4389 5f0494e02e21e1010e664191db2b45b7c41f3d1e
+#&gt; 109           2.8.1.sc4181 91d4bd1f52baabc73b53c05d9d4b521501eea4db
+#&gt; 110                  0.1.1 ae0ef3a07bf48e4892c802b77c7792cde6364953
+#&gt; 111           0.7.2.sc4369 c576b4852ba8930c77947d3976c7eb22d99736b5
+#&gt; 112             1.3.sc4182 c0bae766ad7228d84bb0da3a937120f22e0760d2
+#&gt; 113           1.3.5.sc4183 071343641a875b0a9016230b315085e0d612b1a1
+#&gt; 114           1.8.2.nc4036 753ae2051a87b178a0f72badff02528beb725f4d
+#&gt; 115           2.3.2.sc4184 f59303814280d6c3f32ffcadcbcef41d681cab58</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#note">Note</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -473,7 +522,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>
